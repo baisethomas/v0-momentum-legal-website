@@ -1,10 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Scale, Trophy, Users, CheckCircle, Star, Menu, X } from "lucide-react"
+import { fadeUp, stagger, tiltHover, fadeIn, slideInLeft, slideInRight, scaleIn, float, glow } from "@/lib/motion"
 
 export default function MomentumLegalHomepage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -139,37 +141,57 @@ export default function MomentumLegalHomepage() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Badge
-            variant="secondary"
-            className="mb-8 animate-fade-in-up bg-white/10 text-white border-white/20 backdrop-blur-sm"
+        <motion.div 
+          className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          variants={stagger}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.div variants={fadeUp}>
+            <Badge
+              variant="secondary"
+              className="mb-8 bg-white/10 text-white border-white/20 backdrop-blur-sm"
+            >
+              Elite NIL Legal Representation
+            </Badge>
+          </motion.div>
+          <motion.h1 
+            className="font-playfair text-6xl md:text-8xl font-bold text-white mb-8 text-balance leading-tight"
+            variants={fadeUp}
           >
-            Elite NIL Legal Representation
-          </Badge>
-          <h1 className="font-playfair text-6xl md:text-8xl font-bold text-white mb-8 animate-fade-in-up text-balance leading-tight">
             Momentum Legal
             <span className="block text-white">Driving deals forward</span>
-          </h1>
-          <p className="text-2xl text-white/90 mb-12 max-w-4xl mx-auto animate-fade-in-up text-pretty font-light leading-relaxed">
+          </motion.h1>
+          <motion.p 
+            className="text-2xl text-white/90 mb-12 max-w-4xl mx-auto text-pretty font-light leading-relaxed"
+            variants={fadeUp}
+          >
             A boutique law firm built to move business forward. We operate at the intersection of sports, business, and innovation — representing athletes, collectives, universities, entrepreneurs, and investors.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up">
-            <Button
-              size="lg"
-              className="bg-black hover:bg-gray-800 text-white border-0 px-8 py-4 text-lg font-semibold"
-            >
-              Schedule Free Consultation
-              <ArrowRight className="ml-2 h-6 w-6" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg bg-transparent"
-            >
-              Our Expertise
-            </Button>
-          </div>
-        </div>
+          </motion.p>
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-6 justify-center"
+            variants={fadeUp}
+          >
+            <motion.div variants={tiltHover}>
+              <Button
+                size="lg"
+                className="bg-black hover:bg-gray-800 text-white border-0 px-8 py-4 text-lg font-semibold"
+              >
+                Schedule Free Consultation
+                <ArrowRight className="ml-2 h-6 w-6" />
+              </Button>
+            </motion.div>
+            <motion.div variants={tiltHover}>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg bg-transparent"
+              >
+                Our Expertise
+              </Button>
+            </motion.div>
+          </motion.div>
+        </motion.div>
 
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
@@ -181,42 +203,83 @@ export default function MomentumLegalHomepage() {
       {/* Stats Section */}
       <section className="py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {stats.map((stat, index) => (
-              <div key={index} className="text-center animate-fade-in-up">
+              <motion.div 
+                key={index} 
+                className="text-center"
+                variants={fadeUp}
+                whileHover={float}
+              >
                 <div className="font-playfair text-5xl md:text-6xl font-bold text-white mb-3">{stat.number}</div>
                 <div className="text-white/90 font-medium text-lg">{stat.label}</div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Services Section */}
       <section id="services" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="font-playfair text-5xl md:text-6xl font-bold text-black mb-8 text-balance">
+          <motion.div 
+            className="text-center mb-20"
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <motion.h2 
+              className="font-playfair text-5xl md:text-6xl font-bold text-black mb-8 text-balance"
+              variants={fadeUp}
+            >
               Comprehensive Legal Services
-            </h2>
-            <p className="text-2xl text-gray-600 max-w-4xl mx-auto text-pretty font-light leading-relaxed">
+            </motion.h2>
+            <motion.p 
+              className="text-2xl text-gray-600 max-w-4xl mx-auto text-pretty font-light leading-relaxed"
+              variants={fadeUp}
+            >
               From NIL representation to complex business transactions, we guide clients through fast-moving opportunities while delivering the full spectrum of contract, compliance, and deal-making services.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8"
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {services.map((service, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <CardContent className="p-8">
-                  <div className="text-black mb-4 group-hover:scale-110 transition-transform duration-300">
-                    {service.icon}
-                  </div>
-                  <h3 className="font-playfair text-2xl font-bold text-card-foreground mb-4">{service.title}</h3>
-                  <p className="text-muted-foreground text-pretty">{service.description}</p>
-                </CardContent>
-              </Card>
+              <motion.div key={index} variants={fadeUp}>
+                <motion.div
+                  variants={tiltHover}
+                  whileHover="hover"
+                  initial="rest"
+                >
+                  <Card className="group hover:shadow-lg transition-all duration-300">
+                    <CardContent className="p-8">
+                      <motion.div 
+                        className="text-black mb-4"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {service.icon}
+                      </motion.div>
+                      <h3 className="font-playfair text-2xl font-bold text-card-foreground mb-4">{service.title}</h3>
+                      <p className="text-muted-foreground text-pretty">{service.description}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -224,37 +287,72 @@ export default function MomentumLegalHomepage() {
       <section id="about" className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="font-playfair text-5xl md:text-6xl font-bold text-black mb-8 text-balance">
+            <motion.div
+              variants={stagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              <motion.h2 
+                className="font-playfair text-5xl md:text-6xl font-bold text-black mb-8 text-balance"
+                variants={slideInLeft}
+              >
                 Why Choose Momentum Legal?
-              </h2>
-              <p className="text-xl text-gray-600 mb-10 text-pretty font-light leading-relaxed">
+              </motion.h2>
+              <motion.p 
+                className="text-xl text-gray-600 mb-10 text-pretty font-light leading-relaxed"
+                variants={fadeUp}
+              >
                 We operate at the intersection of sports, business, and innovation. Our boutique approach means personalized attention and deep expertise across the entire sports ecosystem — from individual athletes to major institutional clients.
-              </p>
+              </motion.p>
 
-              <div className="space-y-4">
+              <motion.div 
+                className="space-y-4"
+                variants={stagger}
+              >
                 {[
                   "Boutique firm with personalized attention",
                   "Multi-faceted expertise across sports, business & innovation",
                   "Proven track record with athletes, collectives & universities",
                   "24/7 support for fast-moving opportunities",
                 ].map((item, index) => (
-                  <div key={index} className="flex items-center">
+                  <motion.div 
+                    key={index} 
+                    className="flex items-center"
+                    variants={fadeUp}
+                    whileHover={{ x: 8 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     <CheckCircle className="h-5 w-5 text-black mr-3 flex-shrink-0" />
                     <span className="text-foreground">{item}</span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            <div className="relative">
-              <div className="aspect-square bg-white rounded-3xl flex items-center justify-center shadow-2xl border border-gray-200">
+            <motion.div 
+              className="relative"
+              variants={slideInRight}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              <motion.div 
+                className="aspect-square bg-white rounded-3xl flex items-center justify-center shadow-2xl border border-gray-200"
+                whileHover={{ scale: 1.05, rotate: 2 }}
+                transition={{ duration: 0.3 }}
+              >
                 <div className="text-center">
-                  <Scale className="h-32 w-32 text-black mx-auto mb-6" />
+                  <motion.div
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <Scale className="h-32 w-32 text-black mx-auto mb-6" />
+                  </motion.div>
                   <p className="font-playfair text-3xl font-bold text-black">Justice in Motion</p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -262,35 +360,71 @@ export default function MomentumLegalHomepage() {
       {/* Testimonials Section */}
       <section id="testimonials" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
+          <motion.div 
+            className="text-center mb-16"
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <motion.h2 
+              className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance"
+              variants={fadeUp}
+            >
               What Our Clients Say
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
+            </motion.h2>
+            <motion.p 
+              className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty"
+              variants={fadeUp}
+            >
               Hear from athletes, collectives, universities, and entrepreneurs we've helped navigate complex opportunities successfully.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8"
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-8">
-                  <div className="flex mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-500 fill-current" />
-                    ))}
-                  </div>
-                  <blockquote className="text-muted-foreground mb-6 text-pretty">"{testimonial.quote}"</blockquote>
-                  <div>
-                    <div className="font-semibold text-card-foreground">{testimonial.name}</div>
-                    <div className="text-sm text-muted-foreground">
-                      {testimonial.role} • {testimonial.organization}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <motion.div key={index} variants={fadeUp}>
+                <motion.div
+                  variants={tiltHover}
+                  whileHover="hover"
+                  initial="rest"
+                >
+                  <Card className="hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-8">
+                      <motion.div 
+                        className="flex mb-4"
+                        variants={stagger}
+                      >
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <motion.div
+                            key={i}
+                            variants={scaleIn}
+                            whileHover={{ scale: 1.2, rotate: 10 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <Star className="h-5 w-5 text-yellow-500 fill-current" />
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                      <blockquote className="text-muted-foreground mb-6 text-pretty">"{testimonial.quote}"</blockquote>
+                      <div>
+                        <div className="font-semibold text-card-foreground">{testimonial.name}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {testimonial.role} • {testimonial.organization}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
