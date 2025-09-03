@@ -72,14 +72,12 @@ export const revealUp = {
   hidden: {
     opacity: 0,
     y: 60,
-    scale: 0.95,
-    filter: "blur(4px)"
+    scale: 0.95
   },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
-    filter: "blur(0px)",
     transition: {
       duration: 1.2,
       ease: PREMIUM_EASE as any,
@@ -187,13 +185,11 @@ export const glow = {
 export const textReveal = {
   hidden: {
     opacity: 0,
-    y: 30,
-    filter: "blur(8px)"
+    y: 30
   },
   show: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: {
       duration: 0.8,
       ease: PREMIUM_EASE as any

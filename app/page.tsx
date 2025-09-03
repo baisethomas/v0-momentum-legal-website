@@ -341,8 +341,8 @@ export default function MomentumLegalHomepage() {
           <motion.p 
             className="text-2xl text-white/90 mb-12 max-w-4xl mx-auto text-pretty font-light leading-relaxed"
             variants={textReveal}
-            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0, duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
           >
             A boutique law firm built to move business forward. We operate at the intersection of sports, business, and innovation — representing athletes, collectives, universities, entrepreneurs, and investors.
