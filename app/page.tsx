@@ -17,51 +17,51 @@ export default function MomentumLegalHomepage() {
   }, [])
 
   const stats = [
-    { number: "500+", label: "Athletes Represented" },
-    { number: "$50M+", label: "NIL Deals Secured" },
-    { number: "98%", label: "Success Rate" },
+    { number: "200+", label: "Clients Represented" },
+    { number: "$100M+", label: "Deals Facilitated" },
+    { number: "15+", label: "Years Combined Experience" },
     { number: "24/7", label: "Support Available" },
   ]
 
   const services = [
     {
       icon: <Scale className="h-8 w-8" />,
-      title: "Contract Negotiation",
+      title: "NIL Representation",
       description:
-        "Expert negotiation of NIL deals to maximize your earning potential while protecting your interests.",
+        "Comprehensive NIL guidance for athletes, from contract negotiation to compliance with NCAA regulations and state laws.",
     },
     {
       icon: <Trophy className="h-8 w-8" />,
-      title: "Brand Partnerships",
-      description: "Strategic guidance on brand partnerships that align with your values and career goals.",
+      title: "Business Transactions",
+      description: "Complex deal-making services for collectives, universities, entrepreneurs, and investors in the sports ecosystem.",
     },
     {
       icon: <Users className="h-8 w-8" />,
-      title: "Legal Compliance",
-      description: "Ensure all your NIL activities comply with NCAA regulations and state laws.",
+      title: "Strategic Partnerships",
+      description: "We're not just attorneys — we're partners in creating lasting growth through innovative legal solutions.",
     },
   ]
 
   const testimonials = [
     {
       name: "Sarah Johnson",
-      sport: "Basketball",
-      university: "Duke University",
+      role: "Student-Athlete",
+      organization: "Duke University Basketball",
       quote: "Momentum Legal helped me secure my first major NIL deal. Their expertise made all the difference.",
       rating: 5,
     },
     {
       name: "Marcus Williams",
-      sport: "Football",
-      university: "University of Alabama",
-      quote: "Professional, knowledgeable, and always available. They truly understand the athlete experience.",
+      role: "Collective Director",
+      organization: "Crimson Tide Collective",
+      quote: "Professional, knowledgeable, and always available. They understand both the legal complexities and business opportunities.",
       rating: 5,
     },
     {
       name: "Emma Davis",
-      sport: "Soccer",
-      university: "Stanford University",
-      quote: "The team at Momentum Legal guided me through complex negotiations with confidence.",
+      role: "University Administrator",
+      organization: "Stanford Athletics",
+      quote: "The team at Momentum Legal guided us through complex NIL compliance and business transactions with confidence.",
       rating: 5,
     },
   ]
@@ -69,26 +69,30 @@ export default function MomentumLegalHomepage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
+      <nav className="fixed top-0 w-full bg-white backdrop-blur-sm border-b border-gray-200 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <div className="font-playfair text-2xl font-bold text-primary">Momentum Legal</div>
+              <img 
+                src="/logo-new.png" 
+                alt="Momentum Legal" 
+                className="h-16 w-auto"
+              />
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
-                <a href="#services" className="text-foreground hover:text-primary transition-colors">
+                <a href="#services" className="text-gray-700 hover:text-black transition-colors">
                   Services
                 </a>
-                <a href="#about" className="text-foreground hover:text-primary transition-colors">
+                <a href="#about" className="text-gray-700 hover:text-black transition-colors">
                   About
                 </a>
-                <a href="#testimonials" className="text-foreground hover:text-primary transition-colors">
+                <a href="#testimonials" className="text-gray-700 hover:text-black transition-colors">
                   Testimonials
                 </a>
-                <a href="#contact" className="text-foreground hover:text-primary transition-colors">
+                <a href="#contact" className="text-gray-700 hover:text-black transition-colors">
                   Contact
                 </a>
               </div>
@@ -106,17 +110,17 @@ export default function MomentumLegalHomepage() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-card">
-              <a href="#services" className="block px-3 py-2 text-foreground hover:text-primary">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white">
+              <a href="#services" className="block px-3 py-2 text-gray-700 hover:text-black">
                 Services
               </a>
-              <a href="#about" className="block px-3 py-2 text-foreground hover:text-primary">
+              <a href="#about" className="block px-3 py-2 text-gray-700 hover:text-black">
                 About
               </a>
-              <a href="#testimonials" className="block px-3 py-2 text-foreground hover:text-primary">
+              <a href="#testimonials" className="block px-3 py-2 text-gray-700 hover:text-black">
                 Testimonials
               </a>
-              <a href="#contact" className="block px-3 py-2 text-foreground hover:text-primary">
+              <a href="#contact" className="block px-3 py-2 text-gray-700 hover:text-black">
                 Contact
               </a>
             </div>
@@ -143,12 +147,11 @@ export default function MomentumLegalHomepage() {
             Elite NIL Legal Representation
           </Badge>
           <h1 className="font-playfair text-6xl md:text-8xl font-bold text-white mb-8 animate-fade-in-up text-balance leading-tight">
-            Your Partner in
-            <span className="block text-white">NIL Success</span>
+            Momentum Legal
+            <span className="block text-white">Driving deals forward</span>
           </h1>
           <p className="text-2xl text-white/90 mb-12 max-w-4xl mx-auto animate-fade-in-up text-pretty font-light leading-relaxed">
-            Professional legal representation for college athletes navigating Name, Image, and Likeness opportunities.
-            Maximize your potential while staying compliant.
+            A boutique law firm built to move business forward. We operate at the intersection of sports, business, and innovation — representing athletes, collectives, universities, entrepreneurs, and investors.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up">
             <Button
@@ -194,11 +197,10 @@ export default function MomentumLegalHomepage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="font-playfair text-5xl md:text-6xl font-bold text-black mb-8 text-balance">
-              Comprehensive NIL Services
+              Comprehensive Legal Services
             </h2>
             <p className="text-2xl text-gray-600 max-w-4xl mx-auto text-pretty font-light leading-relaxed">
-              From contract negotiation to compliance guidance, we provide end-to-end legal support for your NIL
-              journey.
+              From NIL representation to complex business transactions, we guide clients through fast-moving opportunities while delivering the full spectrum of contract, compliance, and deal-making services.
             </p>
           </div>
 
@@ -227,17 +229,15 @@ export default function MomentumLegalHomepage() {
                 Why Choose Momentum Legal?
               </h2>
               <p className="text-xl text-gray-600 mb-10 text-pretty font-light leading-relaxed">
-                We specialize exclusively in NIL representation, giving us deep expertise in this rapidly evolving
-                field. Our team understands both the legal complexities and the unique pressures facing college
-                athletes.
+                We operate at the intersection of sports, business, and innovation. Our boutique approach means personalized attention and deep expertise across the entire sports ecosystem — from individual athletes to major institutional clients.
               </p>
 
               <div className="space-y-4">
                 {[
-                  "Specialized NIL expertise",
-                  "Former college athletes on our team",
-                  "Proven track record of success",
-                  "24/7 support during critical negotiations",
+                  "Boutique firm with personalized attention",
+                  "Multi-faceted expertise across sports, business & innovation",
+                  "Proven track record with athletes, collectives & universities",
+                  "24/7 support for fast-moving opportunities",
                 ].map((item, index) => (
                   <div key={index} className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-black mr-3 flex-shrink-0" />
@@ -264,10 +264,10 @@ export default function MomentumLegalHomepage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-              What Athletes Say
+              What Our Clients Say
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Hear from the college athletes we've helped navigate their NIL opportunities successfully.
+              Hear from athletes, collectives, universities, and entrepreneurs we've helped navigate complex opportunities successfully.
             </p>
           </div>
 
@@ -284,7 +284,7 @@ export default function MomentumLegalHomepage() {
                   <div>
                     <div className="font-semibold text-card-foreground">{testimonial.name}</div>
                     <div className="text-sm text-muted-foreground">
-                      {testimonial.sport} • {testimonial.university}
+                      {testimonial.role} • {testimonial.organization}
                     </div>
                   </div>
                 </CardContent>
@@ -301,10 +301,10 @@ export default function MomentumLegalHomepage() {
         </div>
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-playfair text-5xl md:text-6xl font-bold text-white mb-8 text-balance">
-            Ready to Maximize Your NIL Potential?
+            Ready to Move Your Business Forward?
           </h2>
           <p className="text-2xl text-white/90 mb-12 text-pretty font-light leading-relaxed">
-            Schedule a free consultation with our NIL experts and take the first step toward securing your future.
+            Schedule a free consultation with our legal experts and take the first step toward creating lasting growth in the sports ecosystem.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button size="lg" className="bg-black hover:bg-gray-800 text-white px-10 py-4 text-lg font-semibold">
@@ -323,30 +323,34 @@ export default function MomentumLegalHomepage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-card py-12">
+      <footer className="bg-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
-              <div className="font-playfair text-2xl font-bold text-primary mb-4">Momentum Legal</div>
-              <p className="text-muted-foreground mb-4 text-pretty">
-                Professional legal representation for college athletes navigating NIL opportunities.
+              <img 
+                src="/logo-new.png" 
+                alt="Momentum Legal" 
+                className="h-32 w-auto mb-4"
+              />
+              <p className="text-gray-600 mb-4 text-pretty">
+                A boutique law firm built to move business forward. We operate at the intersection of sports, business, and innovation.
               </p>
-              <p className="text-sm text-muted-foreground">© 2024 Momentum Legal. All rights reserved.</p>
+              <p className="text-sm text-gray-600">© 2024 Momentum Legal. All rights reserved.</p>
             </div>
 
             <div>
-              <h4 className="font-semibold text-card-foreground mb-4">Services</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>Contract Negotiation</li>
-                <li>Brand Partnerships</li>
-                <li>Legal Compliance</li>
-                <li>NIL Strategy</li>
+              <h4 className="font-semibold text-gray-800 mb-4">Services</h4>
+              <ul className="space-y-2 text-gray-600">
+                <li>NIL Representation</li>
+                <li>Business Transactions</li>
+                <li>Strategic Partnerships</li>
+                <li>Compliance & Deal-Making</li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold text-card-foreground mb-4">Contact</h4>
-              <ul className="space-y-2 text-muted-foreground">
+              <h4 className="font-semibold text-gray-800 mb-4">Contact</h4>
+              <ul className="space-y-2 text-gray-600">
                 <li>Phone: (555) 123-4567</li>
                 <li>Email: info@momentumlegal.com</li>
                 <li>Available 24/7</li>
