@@ -71,12 +71,12 @@ export default function MomentumLegalHomepage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white backdrop-blur-sm border-b border-gray-200 z-50">
+      <nav className="fixed top-0 w-full bg-black backdrop-blur-sm border-b border-gray-800 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-20 py-4">
             <div className="flex items-center">
               <img 
-                src="/logo-new.png" 
+                src="/logo-black.png" 
                 alt="Momentum Legal" 
                 className="h-16 w-auto"
               />
@@ -85,16 +85,16 @@ export default function MomentumLegalHomepage() {
             {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
-                <a href="#services" className="text-gray-700 hover:text-black transition-colors">
+                <a href="#services" className="text-white hover:text-gray-300 transition-colors">
                   Services
                 </a>
-                <a href="#about" className="text-gray-700 hover:text-black transition-colors">
+                <a href="#about" className="text-white hover:text-gray-300 transition-colors">
                   About
                 </a>
-                <a href="#testimonials" className="text-gray-700 hover:text-black transition-colors">
+                <a href="#testimonials" className="text-white hover:text-gray-300 transition-colors">
                   Testimonials
                 </a>
-                <a href="#contact" className="text-gray-700 hover:text-black transition-colors">
+                <a href="#contact" className="text-white hover:text-gray-300 transition-colors">
                   Contact
                 </a>
               </div>
@@ -112,17 +112,17 @@ export default function MomentumLegalHomepage() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white">
-              <a href="#services" className="block px-3 py-2 text-gray-700 hover:text-black">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black">
+              <a href="#services" className="block px-3 py-2 text-white hover:text-gray-300">
                 Services
               </a>
-              <a href="#about" className="block px-3 py-2 text-gray-700 hover:text-black">
+              <a href="#about" className="block px-3 py-2 text-white hover:text-gray-300">
                 About
               </a>
-              <a href="#testimonials" className="block px-3 py-2 text-gray-700 hover:text-black">
+              <a href="#testimonials" className="block px-3 py-2 text-white hover:text-gray-300">
                 Testimonials
               </a>
-              <a href="#contact" className="block px-3 py-2 text-gray-700 hover:text-black">
+              <a href="#contact" className="block px-3 py-2 text-white hover:text-gray-300">
                 Contact
               </a>
             </div>
