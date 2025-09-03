@@ -1,21 +1,60 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Scale, Trophy, Users, CheckCircle, Star, Menu, X } from "lucide-react"
-import { fadeUp, stagger, tiltHover, fadeIn, slideInLeft, slideInRight, scaleIn, float, glow } from "@/lib/motion"
+import { 
+  fadeUp, 
+  stagger, 
+  staggerFast,
+  staggerSlow,
+  magneticHover, 
+  revealUp, 
+  slideReveal,
+  textReveal,
+  cardHover,
+  fadeIn, 
+  slideInLeft, 
+  slideInRight, 
+  scaleIn,
+  glow 
+} from "@/lib/motion"
+import { useParallax, useMagneticEffect, useScrollProgress } from "@/lib/hooks"
+import CustomCursor, { useCursorStyle } from "@/components/CustomCursor"
 
 export default function MomentumLegalHomepage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrollY, setScrollY] = useState(0)
-
+  const [isLoaded, setIsLoaded] = useState(false)
+  
+  // Advanced scroll and parallax effects
+  const { scrollYProgress } = useScroll()
+  const scrollProgress = useScrollProgress()
+  const heroParallax = useParallax(0.5)
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -300])
+  const scaleProgress = useTransform(scrollYProgress, [0, 0.5], [1, 1.05])
+  
+  // Magnetic effects for key elements
+  const ctaMagnetic = useMagneticEffect(0.2)
+  const logoMagnetic = useMagneticEffect(0.1)
+  
+  // Custom cursor
+  useCursorStyle()
+  
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
     window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    
+    // Page load animation
+    const timer = setTimeout(() => setIsLoaded(true), 100)
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      clearTimeout(timer)
+    }
   }, [])
 
   const stats = [
@@ -69,216 +108,506 @@ export default function MomentumLegalHomepage() {
   ]
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <CustomCursor />
+      <motion.div 
+        className="min-h-screen bg-background"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoaded ? 1 : 0 }}
+        transition={{ duration: 0.6 }}
+      >
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-black backdrop-blur-sm border-b border-gray-800 z-50">
+      <motion.nav 
+        className="fixed top-0 w-full bg-black border-b border-gray-800 z-50"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20 py-4">
-            <div className="flex items-center">
+            <motion.div 
+              className="flex items-center"
+              ref={logoMagnetic.ref}
+              style={{ x: logoMagnetic.x, y: logoMagnetic.y }}
+              whileHover={{ scale: 1.05 }}
+            >
               <img 
                 src="/logo-black.png" 
                 alt="Momentum Legal" 
-                className="h-16 w-auto"
+                className="h-16 w-auto transition-all duration-300"
+                data-cursor-text="Home"
               />
-            </div>
+            </motion.div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
-                <a href="#services" className="text-white hover:text-gray-300 transition-colors">
-                  Services
-                </a>
-                <a href="#about" className="text-white hover:text-gray-300 transition-colors">
-                  About
-                </a>
-                <a href="#testimonials" className="text-white hover:text-gray-300 transition-colors">
-                  Testimonials
-                </a>
-                <a href="#contact" className="text-white hover:text-gray-300 transition-colors">
-                  Contact
-                </a>
-              </div>
+              <motion.div 
+                className="ml-10 flex items-baseline space-x-8"
+                variants={staggerFast}
+                initial="hidden"
+                animate={isLoaded ? "show" : "hidden"}
+              >
+                {["Services", "About", "Testimonials", "Contact"].map((item, i) => (
+                  <motion.a 
+                    key={item}
+                    href={`#${item.toLowerCase()}`}
+                    className="text-white hover:text-gray-300 transition-all duration-300 relative group"
+                    variants={fadeUp}
+                    whileHover={{ y: -2 }}
+                    data-cursor-text={item}
+                  >
+                    {item}
+                    <motion.div 
+                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white origin-left"
+                      whileHover={{ width: "100%" }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.a>
+                ))}
+              </motion.div>
             </div>
 
             {/* Mobile menu button */}
             <div className="md:hidden">
-              <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </Button>
+              <motion.div whileTap={{ scale: 0.9 }}>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  data-cursor-text="Menu"
+                >
+                  <motion.div
+                    animate={{ rotate: isMenuOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                  </motion.div>
+                </Button>
+              </motion.div>
             </div>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black">
-              <a href="#services" className="block px-3 py-2 text-white hover:text-gray-300">
-                Services
-              </a>
-              <a href="#about" className="block px-3 py-2 text-white hover:text-gray-300">
-                About
-              </a>
-              <a href="#testimonials" className="block px-3 py-2 text-white hover:text-gray-300">
-                Testimonials
-              </a>
-              <a href="#contact" className="block px-3 py-2 text-white hover:text-gray-300">
-                Contact
-              </a>
-            </div>
-          </div>
-        )}
-      </nav>
+        <motion.div
+          className="md:hidden overflow-hidden"
+          initial={false}
+          animate={{ height: isMenuOpen ? "auto" : 0, opacity: isMenuOpen ? 1 : 0 }}
+          transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <motion.div 
+            className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/95 backdrop-blur-md"
+            variants={staggerFast}
+            initial="hidden"
+            animate={isMenuOpen ? "show" : "hidden"}
+          >
+            {["Services", "About", "Testimonials", "Contact"].map((item) => (
+              <motion.a 
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="block px-3 py-2 text-white hover:text-gray-300 transition-all duration-300 hover:translate-x-2"
+                variants={slideReveal}
+                onClick={() => setIsMenuOpen(false)}
+                data-cursor-text={item}
+              >
+                {item}
+              </motion.a>
+            ))}
+          </motion.div>
+        </motion.div>
+        
+        {/* Scroll progress indicator */}
+        <motion.div 
+          className="absolute bottom-0 left-0 h-0.5 bg-white origin-left"
+          style={{ scaleX: scrollYProgress }}
+        />
+      </motion.nav>
 
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div
+        <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url('/professional-sports-stadium-with-dramatic-lighting.jpg')`,
-            transform: `translateY(${scrollY * 0.3}px)`,
+            y: backgroundY,
+            scale: scaleProgress
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
+        />
 
         <motion.div 
           className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-          variants={stagger}
+          variants={staggerSlow}
           initial="hidden"
-          animate="show"
+          animate={isLoaded ? "show" : "hidden"}
         >
-          <motion.div variants={fadeUp}>
+          <motion.div variants={revealUp}>
             <Badge
               variant="secondary"
-              className="mb-8 bg-white/10 text-white border-white/20 backdrop-blur-sm"
+              className="mb-8 bg-white/10 text-white border-white/20 backdrop-blur-md shadow-2xl"
             >
               Elite NIL Legal Representation
             </Badge>
           </motion.div>
+          
           <motion.h1 
             className="font-playfair text-6xl md:text-8xl font-bold text-white mb-8 text-balance leading-tight"
-            variants={fadeUp}
+            variants={textReveal}
           >
-            Momentum Legal
-            <span className="block text-white">Driving deals forward</span>
+            <motion.span 
+              className="inline-block"
+              whileHover={{ 
+                scale: 1.02,
+                textShadow: "0 0 40px rgba(255,255,255,0.3)",
+                transition: { duration: 0.3 }
+              }}
+            >
+              Momentum Legal
+            </motion.span>
+            <motion.span 
+              className="block text-white mt-2"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+            >
+              Driving deals forward
+            </motion.span>
           </motion.h1>
+          
           <motion.p 
             className="text-2xl text-white/90 mb-12 max-w-4xl mx-auto text-pretty font-light leading-relaxed"
-            variants={fadeUp}
+            variants={textReveal}
+            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 1.0, duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
           >
             A boutique law firm built to move business forward. We operate at the intersection of sports, business, and innovation — representing athletes, collectives, universities, entrepreneurs, and investors.
           </motion.p>
+          
           <motion.div 
             className="flex flex-col sm:flex-row gap-6 justify-center"
-            variants={fadeUp}
+            variants={staggerFast}
+            initial="hidden"
+            animate={isLoaded ? "show" : "hidden"}
           >
-            <motion.div variants={tiltHover}>
-              <Button
-                size="lg"
-                className="bg-black hover:bg-gray-800 text-white border-0 px-8 py-4 text-lg font-semibold"
+            <motion.div 
+              variants={revealUp}
+              ref={ctaMagnetic.ref}
+              style={{ x: ctaMagnetic.x, y: ctaMagnetic.y }}
+            >
+              <motion.div
+                whileHover={magneticHover.hover}
+                whileTap={{ scale: 0.95 }}
+                initial={magneticHover.rest}
               >
-                Schedule Free Consultation
-                <ArrowRight className="ml-2 h-6 w-6" />
-              </Button>
+                <Button
+                  size="lg"
+                  className="bg-black hover:bg-gray-800 text-white border-0 px-8 py-4 text-lg font-semibold shadow-2xl transition-all duration-300"
+                  data-cursor-text="Schedule"
+                >
+                  Schedule Free Consultation
+                  <motion.div
+                    whileHover={{ x: 4 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ArrowRight className="ml-2 h-6 w-6" />
+                  </motion.div>
+                </Button>
+              </motion.div>
             </motion.div>
-            <motion.div variants={tiltHover}>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg bg-transparent"
+            
+            <motion.div variants={revealUp}>
+              <motion.div
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "rgba(255, 255, 255, 0.15)",
+                  borderColor: "rgba(255, 255, 255, 0.5)"
+                }}
+                whileTap={{ scale: 0.95 }}
               >
-                Our Expertise
-              </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-md px-8 py-4 text-lg bg-transparent shadow-2xl transition-all duration-300"
+                  data-cursor-text="Learn More"
+                >
+                  Our Expertise
+                </Button>
+              </motion.div>
             </motion.div>
           </motion.div>
         </motion.div>
 
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
-          </div>
-        </div>
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2, duration: 1 }}
+        >
+          <motion.div 
+            className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center backdrop-blur-sm"
+            animate={{ 
+              y: [0, -8, 0],
+              opacity: [0.6, 1, 0.6]
+            }}
+            transition={{ 
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            data-cursor-text="Scroll"
+          >
+            <motion.div 
+              className="w-1 h-3 bg-white rounded-full mt-2"
+              animate={{ 
+                height: [12, 6, 12],
+                opacity: [0.8, 1, 0.8]
+              }}
+              transition={{ 
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.section 
+        className="py-20 bg-black relative overflow-hidden"
+        style={{ y: useTransform(scrollYProgress, [0.1, 0.3], [0, -50]) }}
+      >
+        {/* Animated background */}
+        <motion.div
+          className="absolute inset-0 opacity-5"
+          animate={{ 
+            backgroundPosition: ["0% 0%", "100% 100%"],
+          }}
+          transition={{ 
+            duration: 20,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "linear"
+          }}
+          style={{
+            background: "radial-gradient(circle, white 1px, transparent 1px)",
+            backgroundSize: "50px 50px"
+          }}
+        />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div 
             className="grid grid-cols-2 md:grid-cols-4 gap-8"
-            variants={stagger}
+            variants={staggerFast}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-50px" }}
           >
-            {stats.map((stat, index) => (
-              <motion.div 
-                key={index} 
-                className="text-center"
-                variants={fadeUp}
-                whileHover={float}
-              >
-                <div className="font-playfair text-5xl md:text-6xl font-bold text-white mb-3">{stat.number}</div>
-                <div className="text-white/90 font-medium text-lg">{stat.label}</div>
-              </motion.div>
-            ))}
+            {stats.map((stat, index) => {
+              const magneticRef = useMagneticEffect(0.1)
+              
+              return (
+                <motion.div 
+                  key={index} 
+                  className="text-center group"
+                  variants={revealUp}
+                  style={{ x: magneticRef.x, y: magneticRef.y } as any}
+                  whileHover={{
+                    scale: 1.05,
+                    y: -8,
+                    filter: "brightness(1.2)"
+                  }}
+                  data-cursor-text={stat.label}
+                >
+                  <motion.div 
+                    className="font-playfair text-5xl md:text-6xl font-bold text-white mb-3 relative"
+                    whileHover={{
+                      textShadow: "0 0 30px rgba(255,255,255,0.5)"
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1, duration: 0.8 }}
+                    >
+                      {stat.number}
+                    </motion.span>
+                    <motion.div
+                      className="absolute -inset-4 bg-white/5 rounded-full blur-xl"
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileHover={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.div>
+                  <motion.div 
+                    className="text-white/90 font-medium text-lg transition-colors duration-300 group-hover:text-white"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 + 0.3, duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    {stat.label}
+                  </motion.div>
+                </motion.div>
+              )
+            })}
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="services" className="py-24 bg-white relative">
+        {/* Subtle animated background */}
+        <motion.div
+          className="absolute inset-0 opacity-[0.02]"
+          animate={{ 
+            backgroundPosition: ["0% 0%", "100% 100%"] 
+          }}
+          transition={{ 
+            duration: 30,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "linear"
+          }}
+          style={{
+            backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"
+          }}
+        />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div 
             className="text-center mb-20"
-            variants={stagger}
+            variants={staggerSlow}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
           >
             <motion.h2 
               className="font-playfair text-5xl md:text-6xl font-bold text-black mb-8 text-balance"
-              variants={fadeUp}
+              variants={textReveal}
+              whileHover={{ 
+                scale: 1.02,
+                textShadow: "0 4px 20px rgba(0,0,0,0.1)"
+              }}
             >
               Comprehensive Legal Services
             </motion.h2>
             <motion.p 
               className="text-2xl text-gray-600 max-w-4xl mx-auto text-pretty font-light leading-relaxed"
-              variants={fadeUp}
+              variants={textReveal}
             >
               From NIL representation to complex business transactions, we guide clients through fast-moving opportunities while delivering the full spectrum of contract, compliance, and deal-making services.
             </motion.p>
           </motion.div>
 
           <motion.div 
-            className="grid md:grid-cols-3 gap-8"
-            variants={stagger}
+            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto"
+            variants={staggerFast}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-50px" }}
           >
-            {services.map((service, index) => (
-              <motion.div key={index} variants={fadeUp}>
-                <motion.div
-                  variants={tiltHover}
-                  whileHover="hover"
-                  initial="rest"
+            {services.map((service, index) => {
+              const colors = [
+                { bg: 'indigo-500/5', border: 'indigo-200/30', icon: 'text-indigo-700', glow: 'indigo-500/20' },
+                { bg: 'cyan-500/5', border: 'cyan-200/30', icon: 'text-cyan-700', glow: 'cyan-500/20' },
+                { bg: 'fuchsia-500/5', border: 'fuchsia-200/30', icon: 'text-fuchsia-700', glow: 'fuchsia-500/20' }
+              ][index]
+              
+              const magneticRef = useMagneticEffect(0.15)
+              
+              return (
+                <motion.article 
+                  key={index} 
+                  variants={cardHover}
+                  className="group relative overflow-hidden p-8 border-2 rounded-3xl backdrop-blur-sm transition-all duration-500"
+                  style={{
+                    backgroundColor: `rgb(var(--${colors.bg}))`,
+                    borderColor: `rgb(var(--${colors.border}))`
+                  }}
+                  ref={magneticRef.ref}
+                  whileHover={{
+                    scale: 1.02,
+                    y: -4,
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.08)"
+                  } as any}
+                  data-cursor-text={service.title}
                 >
-                  <Card className="group hover:shadow-lg transition-all duration-300">
-                    <CardContent className="p-8">
-                      <motion.div 
-                        className="text-black mb-4"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {service.icon}
+                  {/* Animated background gradient */}
+                  <motion.div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: `radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgb(var(--${colors.glow})) 0%, transparent 70%)`
+                    }}
+                    onMouseMove={(event: any) => {
+                      const rect = event.currentTarget.getBoundingClientRect()
+                      const x = ((event.clientX - rect.left) / rect.width) * 100
+                      const y = ((event.clientY - rect.top) / rect.height) * 100
+                      event.currentTarget.style.setProperty('--x', `${x}%`)
+                      event.currentTarget.style.setProperty('--y', `${y}%`)
+                    }}
+                  />
+                  
+                  <div className="relative z-10">
+                    <motion.div className="flex gap-4 items-start mb-6">
+                      <motion.div className="relative">
+                        <motion.div 
+                          className="grid h-16 w-16 place-items-center rounded-2xl ring-2 bg-white/80 backdrop-blur-sm transition-all duration-300"
+                          whileHover={{ 
+                            scale: 1.1, 
+                            rotate: 10,
+                            backgroundColor: "rgba(255,255,255,0.95)"
+                          } as any}
+                        >
+                          <motion.div 
+                            className={`${colors.icon} transition-all duration-300`}
+                            whileHover={{ scale: 1.2 }}
+                          >
+                            {service.icon}
+                          </motion.div>
+                        </motion.div>
+                        
+                        {/* Subtle glow effect */}
+                        <motion.div 
+                          className="absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500"
+                          style={{ backgroundColor: `rgb(var(--${colors.glow}))` }}
+                        />
                       </motion.div>
-                      <h3 className="font-playfair text-2xl font-bold text-card-foreground mb-4">{service.title}</h3>
-                      <p className="text-muted-foreground text-pretty">{service.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </motion.div>
-            ))}
+                    </motion.div>
+                    
+                    <motion.h3 
+                      className="text-2xl font-bold tracking-tight text-black mb-4 group-hover:text-black transition-colors duration-300"
+                      whileHover={{ x: 4 }}
+                    >
+                      {service.title}
+                    </motion.h3>
+                    
+                    <motion.p 
+                      className="text-slate-600 text-pretty leading-relaxed group-hover:text-slate-700 transition-colors duration-300"
+                      initial={{ opacity: 0.8 }}
+                      whileHover={{ opacity: 1 }}
+                    >
+                      {service.description}
+                    </motion.p>
+                  </div>
+                  
+                  {/* Decorative corner accent */}
+                  <motion.div
+                    className="absolute top-4 right-4 w-2 h-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300"
+                    style={{ backgroundColor: `rgb(var(--${colors.glow}))` }}
+                    whileHover={{ scale: 1.5 }}
+                  />
+                </motion.article>
+              )
+            })}
           </motion.div>
         </div>
       </section>
@@ -382,48 +711,59 @@ export default function MomentumLegalHomepage() {
           </motion.div>
 
           <motion.div 
-            className="grid md:grid-cols-3 gap-8"
+            className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto"
             variants={stagger}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
           >
-            {testimonials.map((testimonial, index) => (
-              <motion.div key={index} variants={fadeUp}>
-                <motion.div
-                  variants={tiltHover}
-                  whileHover="hover"
-                  initial="rest"
+            {testimonials.map((testimonial, index) => {
+              const blurColors = ['emerald-500/10', 'blue-500/10', 'purple-500/10'];
+              const blurPositions = [
+                'absolute -left-24 -top-24 h-56 w-56',
+                'absolute right-[-20%] top-[-30%] h-64 w-64',
+                'absolute -bottom-24 -right-24 h-64 w-64'
+              ];
+              
+              return (
+                <motion.article 
+                  key={index} 
+                  variants={fadeUp}
+                  className="group relative overflow-hidden rounded-2xl border p-6 sm:p-8 backdrop-blur-sm border-black/10 bg-black/5"
                 >
-                  <Card className="hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-8">
-                      <motion.div 
-                        className="flex mb-4"
-                        variants={stagger}
-                      >
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <motion.div
-                            key={i}
-                            variants={scaleIn}
-                            whileHover={{ scale: 1.2, rotate: 10 }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            <Star className="h-5 w-5 text-yellow-500 fill-current" />
-                          </motion.div>
-                        ))}
-                      </motion.div>
-                      <blockquote className="text-muted-foreground mb-6 text-pretty">"{testimonial.quote}"</blockquote>
-                      <div>
-                        <div className="font-semibold text-card-foreground">{testimonial.name}</div>
-                        <div className="text-sm text-muted-foreground">
-                          {testimonial.role} • {testimonial.organization}
-                        </div>
+                  <div className={`${blurPositions[index]} rounded-full bg-${blurColors[index]} blur-3xl`}></div>
+                  <div className="flex items-start gap-4">
+                    <div className="relative">
+                      <div className="grid h-12 w-12 place-items-center rounded-full ring-1 bg-black/5 ring-black/15">
+                        <motion.div 
+                          className="flex"
+                          variants={stagger}
+                        >
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <motion.div
+                              key={i}
+                              variants={scaleIn}
+                              whileHover={{ scale: 1.2, rotate: 10 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                            </motion.div>
+                          ))}
+                        </motion.div>
                       </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </motion.div>
-            ))}
+                      <div className="pointer-events-none absolute -inset-4 rounded-full border border-black/5"></div>
+                    </div>
+                  </div>
+                  <blockquote className="mt-6 text-slate-600 text-pretty">"{testimonial.quote}"</blockquote>
+                  <div className="mt-4">
+                    <div className="font-semibold text-black">{testimonial.name}</div>
+                    <div className="text-sm text-slate-500">
+                      {testimonial.role} • {testimonial.organization}
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -493,6 +833,7 @@ export default function MomentumLegalHomepage() {
           </div>
         </div>
       </footer>
-    </div>
+      </motion.div>
+    </>
   )
 }
