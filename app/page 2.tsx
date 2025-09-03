@@ -19,39 +19,17 @@ import {
   fadeIn, 
   slideInLeft, 
   slideInRight, 
-  scaleIn,
+  scaleIn, 
+  float, 
   glow 
 } from "@/lib/motion"
-import { 
-  mobileRevealUp,
-  mobileSlideIn,
-  mobileTouchScale,
-  mobileButtonPress,
-  mobileCardHover,
-  mobileStagger,
-  mobileTextReveal,
-  mobileFloat,
-  mobileBadgePulse,
-  mobileSectionReveal
-} from "@/lib/mobile-animations"
 import { useParallax, useMagneticEffect, useScrollProgress } from "@/lib/hooks"
-import { 
-  useIsMobile, 
-  useMobileMagnetic, 
-  useMobileParallax, 
-  useMobileIntersection,
-  useTouchRipple 
-} from "@/lib/mobile-hooks"
 import CustomCursor, { useCursorStyle } from "@/components/CustomCursor"
-import TouchRipple from "@/components/TouchRipple"
-import MobileLoading from "@/components/MobileLoading"
-import MobilePullToRefresh from "@/components/MobilePullToRefresh"
 
 export default function MomentumLegalHomepage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrollY, setScrollY] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
-  const [showMobileLoading, setShowMobileLoading] = useState(false)
   
   // Advanced scroll and parallax effects
   const { scrollYProgress } = useScroll()
@@ -60,53 +38,25 @@ export default function MomentumLegalHomepage() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -300])
   const scaleProgress = useTransform(scrollYProgress, [0, 0.5], [1, 1.05])
   
-  // Device detection and adaptive effects
-  const isMobile = useIsMobile()
-  
-  // Magnetic effects (always initialize both)
+  // Magnetic effects for key elements
   const ctaMagnetic = useMagneticEffect(0.2)
   const logoMagnetic = useMagneticEffect(0.1)
-  const mobileCTAMagnetic = useMobileMagnetic(0.1)
-  const mobileLogoMagnetic = useMobileMagnetic(0.05)
   
-  // Touch ripple effects
-  const ctaRipple = useTouchRipple()
-  
-  // Custom cursor - always call hook, conditionally use
+  // Custom cursor
   useCursorStyle()
-  const shouldShowCursor = !isMobile
   
-  // Mobile pull-to-refresh handler
-  const handleRefresh = () => {
-    window.location.reload()
-  }
-
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
     window.addEventListener("scroll", handleScroll)
     
-    // Mobile loading experience
-    if (isMobile) {
-      setShowMobileLoading(true)
-      const mobileTimer = setTimeout(() => {
-        setShowMobileLoading(false)
-        setIsLoaded(true)
-      }, 2000) // 2 second mobile loading
-      
-      return () => {
-        window.removeEventListener("scroll", handleScroll)
-        clearTimeout(mobileTimer)
-      }
-    } else {
-      // Desktop immediate load
-      const timer = setTimeout(() => setIsLoaded(true), 100)
-      
-      return () => {
-        window.removeEventListener("scroll", handleScroll)
-        clearTimeout(timer)
-      }
+    // Page load animation
+    const timer = setTimeout(() => setIsLoaded(true), 100)
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      clearTimeout(timer)
     }
-  }, [isMobile])
+  }, [])
 
   const stats = [
     { number: "200+", label: "Clients Represented" },
@@ -160,19 +110,7 @@ export default function MomentumLegalHomepage() {
 
   return (
     <>
-      {/* Mobile loading screen */}
-      {isMobile && (
-        <MobileLoading 
-          isVisible={showMobileLoading} 
-          onComplete={() => setShowMobileLoading(false)}
-        />
-      )}
-      
-      {/* Mobile pull-to-refresh */}
-      {isMobile && <MobilePullToRefresh onRefresh={handleRefresh} />}
-      
-      {/* Custom cursor for desktop only */}
-      {shouldShowCursor && <CustomCursor />}
+      <CustomCursor />
       <motion.div 
         className="min-h-screen bg-background"
         initial={{ opacity: 0 }}
@@ -181,7 +119,7 @@ export default function MomentumLegalHomepage() {
       >
       {/* Navigation */}
       <motion.nav 
-        className="fixed top-0 w-full bg-black border-b border-gray-800 z-50"
+        className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-gray-800/30 z-50"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
@@ -189,14 +127,10 @@ export default function MomentumLegalHomepage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20 py-4">
             <motion.div 
-              className="flex items-center relative"
+              className="flex items-center"
               ref={logoMagnetic.ref}
-              style={{ 
-                x: logoMagnetic.x, 
-                y: logoMagnetic.y 
-              }}
-              whileHover={!isMobile ? { scale: 1.05 } : undefined}
-              whileTap={isMobile ? { scale: 0.98 } : undefined}
+              style={{ x: logoMagnetic.x, y: logoMagnetic.y }}
+              whileHover={{ scale: 1.05 }}
             >
               <img 
                 src="/logo-black.png" 
@@ -210,7 +144,7 @@ export default function MomentumLegalHomepage() {
             <div className="hidden md:block">
               <motion.div 
                 className="ml-10 flex items-baseline space-x-8"
-                variants={isMobile ? mobileStagger : staggerFast}
+                variants={staggerFast}
                 initial="hidden"
                 animate={isLoaded ? "show" : "hidden"}
               >
@@ -219,10 +153,9 @@ export default function MomentumLegalHomepage() {
                     key={item}
                     href={`#${item.toLowerCase()}`}
                     className="text-white hover:text-gray-300 transition-all duration-300 relative group"
-                    variants={isMobile ? mobileSlideIn : fadeUp}
-                    whileHover={!isMobile ? { y: -2 } : undefined}
-                    whileTap={isMobile ? { scale: 0.95 } : undefined}
-                    data-cursor-text={!isMobile ? item : undefined}
+                    variants={fadeUp}
+                    whileHover={{ y: -2 }}
+                    data-cursor-text={item}
                   >
                     {item}
                     <motion.div 
@@ -309,14 +242,23 @@ export default function MomentumLegalHomepage() {
         />
 
         <motion.div 
-          className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 sm:pt-32"
+          className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
           variants={staggerSlow}
           initial="hidden"
           animate={isLoaded ? "show" : "hidden"}
         >
+          <motion.div variants={revealUp}>
+            <Badge
+              variant="secondary"
+              className="mb-8 bg-white/10 text-white border-white/20 backdrop-blur-md shadow-2xl"
+            >
+              Elite NIL Legal Representation
+            </Badge>
+          </motion.div>
+          
           <motion.h1 
-            className="font-playfair text-4xl sm:text-6xl md:text-8xl font-bold text-white mb-8 text-balance leading-tight"
-            variants={isMobile ? mobileTextReveal : textReveal}
+            className="font-playfair text-6xl md:text-8xl font-bold text-white mb-8 text-balance leading-tight"
+            variants={textReveal}
           >
             <motion.span 
               className="inline-block"
@@ -355,51 +297,45 @@ export default function MomentumLegalHomepage() {
             animate={isLoaded ? "show" : "hidden"}
           >
             <motion.div 
-              variants={isMobile ? mobileRevealUp : revealUp}
+              variants={revealUp}
               ref={ctaMagnetic.ref}
-              style={{ 
-                x: ctaMagnetic.x, 
-                y: ctaMagnetic.y 
-              }}
-              className="relative"
+              style={{ x: ctaMagnetic.x, y: ctaMagnetic.y }}
             >
               <motion.div
-                whileHover={!isMobile ? magneticHover.hover : undefined}
-                whileTap={isMobile ? mobileButtonPress : { scale: 0.95 }}
-                initial={!isMobile ? magneticHover.rest : mobileButtonPress.rest}
-                ref={isMobile ? ctaRipple.ref : undefined}
+                whileHover={magneticHover.hover}
+                whileTap={{ scale: 0.95 }}
+                initial={magneticHover.rest}
               >
                 <Button
                   size="lg"
-                  className="bg-black hover:bg-gray-800 text-white border-0 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold shadow-2xl transition-all duration-300 relative overflow-hidden"
-                  data-cursor-text={!isMobile ? "Schedule" : undefined}
+                  className="bg-black hover:bg-gray-800 text-white border-0 px-8 py-4 text-lg font-semibold shadow-2xl transition-all duration-300"
+                  data-cursor-text="Schedule"
                 >
                   Schedule Free Consultation
                   <motion.div
-                    whileHover={!isMobile ? { x: 4 } : undefined}
+                    whileHover={{ x: 4 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6" />
+                    <ArrowRight className="ml-2 h-6 w-6" />
                   </motion.div>
-                  {isMobile && <TouchRipple ripples={ctaRipple.ripples} />}
                 </Button>
               </motion.div>
             </motion.div>
             
-            <motion.div variants={isMobile ? mobileRevealUp : revealUp}>
+            <motion.div variants={revealUp}>
               <motion.div
-                whileHover={!isMobile ? {
+                whileHover={{
                   scale: 1.05,
                   backgroundColor: "rgba(255, 255, 255, 0.15)",
                   borderColor: "rgba(255, 255, 255, 0.5)"
-                } : undefined}
-                whileTap={isMobile ? { scale: 0.96 } : { scale: 0.95 }}
+                }}
+                whileTap={{ scale: 0.95 }}
               >
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-md px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg bg-transparent shadow-2xl transition-all duration-300"
-                  data-cursor-text={!isMobile ? "Learn More" : undefined}
+                  className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-md px-8 py-4 text-lg bg-transparent shadow-2xl transition-all duration-300"
+                  data-cursor-text="Learn More"
                 >
                   Our Expertise
                 </Button>
@@ -444,232 +380,95 @@ export default function MomentumLegalHomepage() {
       </section>
 
       {/* Stats Section */}
-      <motion.section 
-        className="py-20 bg-black relative overflow-hidden"
-        style={{ y: useTransform(scrollYProgress, [0.1, 0.3], [0, -50]) }}
-      >
-        {/* Animated background */}
-        <motion.div
-          className="absolute inset-0 opacity-5"
-          animate={{ 
-            backgroundPosition: ["0% 0%", "100% 100%"],
-          }}
-          transition={{ 
-            duration: 20,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "linear"
-          }}
-          style={{
-            background: "radial-gradient(circle, white 1px, transparent 1px)",
-            backgroundSize: "50px 50px"
-          }}
-        />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <section className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
-            variants={isMobile ? mobileStagger : staggerFast}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            variants={stagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: isMobile ? "-20px" : "-50px" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
-            {stats.map((stat, index) => {
-              return (
-                <motion.div 
-                  key={index} 
-                  className="text-center group relative"
-                  variants={isMobile ? mobileRevealUp : revealUp}
-                  whileHover={!isMobile ? {
-                    scale: 1.05,
-                    y: -8,
-                    filter: "brightness(1.2)"
-                  } : undefined}
-                  whileTap={isMobile ? mobileFloat : undefined}
-                  data-cursor-text={!isMobile ? stat.label : undefined}
-                >
-                  <motion.div 
-                    className="font-playfair text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-2 sm:mb-3 relative"
-                    whileHover={!isMobile ? {
-                      textShadow: "0 0 30px rgba(255,255,255,0.5)"
-                    } : undefined}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <motion.span
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1, duration: 0.8 }}
-                    >
-                      {stat.number}
-                    </motion.span>
-                    <motion.div
-                      className="absolute -inset-4 bg-white/5 rounded-full blur-xl"
-                      initial={{ scale: 0, opacity: 0 }}
-                      whileHover={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </motion.div>
-                  <motion.div 
-                    className="text-white/90 font-medium text-sm sm:text-lg transition-colors duration-300 group-hover:text-white"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 + 0.3, duration: 0.6 }}
-                    viewport={{ once: true }}
-                  >
-                    {stat.label}
-                  </motion.div>
-                </motion.div>
-              )
-            })}
+            {stats.map((stat, index) => (
+              <motion.div 
+                key={index} 
+                className="text-center"
+                variants={fadeUp}
+                whileHover={float}
+              >
+                <div className="font-playfair text-5xl md:text-6xl font-bold text-white mb-3">{stat.number}</div>
+                <div className="text-white/90 font-medium text-lg">{stat.label}</div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 bg-white relative">
-        {/* Subtle animated background */}
-        <motion.div
-          className="absolute inset-0 opacity-[0.02]"
-          animate={{ 
-            backgroundPosition: ["0% 0%", "100% 100%"] 
-          }}
-          transition={{ 
-            duration: 30,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "linear"
-          }}
-          style={{
-            backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"
-          }}
-        />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <section id="services" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            className="text-center mb-12 sm:mb-20"
-            variants={isMobile ? mobileStagger : staggerSlow}
+            className="text-center mb-20"
+            variants={stagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: isMobile ? "-50px" : "-100px" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             <motion.h2 
-              className="font-playfair text-3xl sm:text-5xl md:text-6xl font-bold text-black mb-6 sm:mb-8 text-balance"
-              variants={isMobile ? mobileTextReveal : textReveal}
-              whileHover={!isMobile ? { 
-                scale: 1.02,
-                textShadow: "0 4px 20px rgba(0,0,0,0.1)"
-              } : undefined}
-              whileTap={isMobile ? { scale: 0.98 } : undefined}
+              className="font-playfair text-5xl md:text-6xl font-bold text-black mb-8 text-balance"
+              variants={fadeUp}
             >
               Comprehensive Legal Services
             </motion.h2>
             <motion.p 
-              className="text-lg sm:text-2xl text-gray-600 max-w-4xl mx-auto text-pretty font-light leading-relaxed"
-              variants={isMobile ? mobileTextReveal : textReveal}
+              className="text-2xl text-gray-600 max-w-4xl mx-auto text-pretty font-light leading-relaxed"
+              variants={fadeUp}
             >
               From NIL representation to complex business transactions, we guide clients through fast-moving opportunities while delivering the full spectrum of contract, compliance, and deal-making services.
             </motion.p>
           </motion.div>
 
           <motion.div 
-            className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto"
-            variants={isMobile ? mobileStagger : staggerFast}
+            className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto"
+            variants={stagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: isMobile ? "-20px" : "-50px" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             {services.map((service, index) => {
-              const colors = [
-                { bg: 'indigo-500/5', border: 'indigo-200/30', icon: 'text-indigo-700', glow: 'indigo-500/20' },
-                { bg: 'cyan-500/5', border: 'cyan-200/30', icon: 'text-cyan-700', glow: 'cyan-500/20' },
-                { bg: 'fuchsia-500/5', border: 'fuchsia-200/30', icon: 'text-fuchsia-700', glow: 'fuchsia-500/20' }
-              ][index]
+              const blurColors = ['indigo-500/10', 'cyan-600/10', 'fuchsia-500/10'];
+              const iconColors = ['text-indigo-700', 'text-cyan-700', 'text-fuchsia-700'];
+              const blurPositions = [
+                'absolute -left-24 -top-24 h-56 w-56',
+                'absolute right-[-20%] top-[-30%] h-64 w-64',
+                'absolute -bottom-24 -right-24 h-64 w-64'
+              ];
               
               return (
                 <motion.article 
                   key={index} 
-                  variants={isMobile ? mobileCardHover : cardHover}
-                  className="group relative overflow-hidden p-6 sm:p-8 border-2 rounded-2xl sm:rounded-3xl backdrop-blur-sm transition-all duration-500"
-                  style={{
-                    backgroundColor: `rgb(var(--${colors.bg}))`,
-                    borderColor: `rgb(var(--${colors.border}))`
-                  }}
-                  whileHover={!isMobile ? {
-                    scale: 1.02,
-                    y: -4,
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.08)"
-                  } : undefined}
-                  whileTap={isMobile ? mobileCardHover.tap : undefined}
-                  data-cursor-text={!isMobile ? service.title : undefined}
+                  variants={fadeUp}
+                  className="group relative overflow-hidden sm:p-8 border rounded-2xl pt-6 pr-6 pb-6 pl-6 backdrop-blur-sm bg-black/5 border-black/10"
                 >
-                  {/* Animated background gradient */}
-                  <motion.div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{
-                      background: `radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgb(var(--${colors.glow})) 0%, transparent 70%)`
-                    }}
-                    onMouseMove={(event: any) => {
-                      const rect = event.currentTarget.getBoundingClientRect()
-                      const x = ((event.clientX - rect.left) / rect.width) * 100
-                      const y = ((event.clientY - rect.top) / rect.height) * 100
-                      event.currentTarget.style.setProperty('--x', `${x}%`)
-                      event.currentTarget.style.setProperty('--y', `${y}%`)
-                    }}
-                  />
-                  
-                  <div className="relative z-10">
-                    <motion.div className="flex gap-3 sm:gap-4 items-start mb-4 sm:mb-6">
-                      <motion.div className="relative">
+                  <div className={`${blurPositions[index]} rounded-full bg-${blurColors[index]} blur-3xl`}></div>
+                  <div className="flex gap-4 items-start">
+                    <div className="relative">
+                      <div className="grid h-12 w-12 place-items-center rounded-full ring-1 bg-black/5 ring-black/15">
                         <motion.div 
-                          className="grid h-12 w-12 sm:h-16 sm:w-16 place-items-center rounded-xl sm:rounded-2xl ring-2 bg-white/80 backdrop-blur-sm transition-all duration-300"
-                          whileHover={!isMobile ? { 
-                            scale: 1.1, 
-                            rotate: 10,
-                            backgroundColor: "rgba(255,255,255,0.95)"
-                          } : undefined}
-                          whileTap={isMobile ? { scale: 1.05, rotate: 5 } : undefined}
+                          className={`${iconColors[index]}`}
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ duration: 0.2 }}
                         >
-                          <motion.div 
-                            className={`${colors.icon} transition-all duration-300`}
-                            whileHover={!isMobile ? { scale: 1.2 } : undefined}
-                          >
-                            {service.icon}
-                          </motion.div>
+                          {service.icon}
                         </motion.div>
-                        
-                        {/* Subtle glow effect */}
-                        <motion.div 
-                          className="absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500"
-                          style={{ backgroundColor: `rgb(var(--${colors.glow}))` }}
-                        />
-                      </motion.div>
-                    </motion.div>
-                    
-                    <motion.h3 
-                      className="text-xl sm:text-2xl font-bold tracking-tight text-black mb-3 sm:mb-4 group-hover:text-black transition-colors duration-300"
-                      whileHover={!isMobile ? { x: 4 } : undefined}
-                    >
-                      {service.title}
-                    </motion.h3>
-                    
-                    <motion.p 
-                      className="text-sm sm:text-base text-slate-600 text-pretty leading-relaxed group-hover:text-slate-700 transition-colors duration-300"
-                      initial={{ opacity: 0.8 }}
-                      whileHover={!isMobile ? { opacity: 1 } : undefined}
-                    >
-                      {service.description}
-                    </motion.p>
+                      </div>
+                      <div className="pointer-events-none absolute -inset-4 rounded-full border border-black/5"></div>
+                    </div>
                   </div>
-                  
-                  {/* Decorative corner accent */}
-                  <motion.div
-                    className="absolute top-3 right-3 sm:top-4 sm:right-4 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300"
-                    style={{ backgroundColor: `rgb(var(--${colors.glow}))` }}
-                    whileHover={!isMobile ? { scale: 1.5 } : undefined}
-                  />
+                  <h3 className="mt-6 text-[22px] sm:text-[24px] font-semibold tracking-tight text-black">{service.title}</h3>
+                  <p className="mt-3 text-slate-600 text-pretty">{service.description}</p>
                 </motion.article>
-              )
+              );
             })}
           </motion.div>
         </div>

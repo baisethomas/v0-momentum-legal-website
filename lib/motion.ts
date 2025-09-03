@@ -82,7 +82,7 @@ export const revealUp = {
     filter: "blur(0px)",
     transition: {
       duration: 1.2,
-      ease: PREMIUM_EASE,
+      ease: PREMIUM_EASE as any,
       type: "spring" as const,
       bounce: 0.1
     }
