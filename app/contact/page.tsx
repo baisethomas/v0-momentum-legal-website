@@ -99,7 +99,7 @@ export default function ContactPage() {
               />
               <div className="flex flex-col leading-tight">
                 <div className="flex items-center gap-2">
-                  <span className="text-xl font-medium tracking-tight text-white">Momentum Legal</span>
+                  <span className="text-xl font-poppins font-semibold tracking-tight text-white uppercase">MOMENTUM LEGAL</span>
                 </div>
               </div>
             </motion.div>
@@ -411,7 +411,7 @@ export default function ContactPage() {
                   className="h-8 w-auto filter invert"
                 />
                 <div className="flex flex-col">
-                  <span className="text-xl font-medium tracking-tight">Momentum Legal</span>
+                  <span className="text-xl font-poppins font-semibold tracking-tight uppercase">MOMENTUM LEGAL</span>
                   <span className="text-[12px] text-gray-400">The Power Behind Your Next Move.</span>
                 </div>
               </div>

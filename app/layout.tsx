@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Playfair_Display } from "next/font/google"
+import { Inter, Playfair_Display, Poppins } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
@@ -19,6 +19,13 @@ const playfairDisplay = Playfair_Display({
   weight: ["400", "700"],
 })
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-poppins",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+})
+
 export const metadata: Metadata = {
   title: "Momentum Legal — The Power Behind Your Next Move",
   description:
@@ -33,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfairDisplay.variable} font-inter antialiased`}>
+      <body className={`${inter.variable} ${playfairDisplay.variable} ${poppins.variable} font-inter antialiased`}>
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
       </body>
