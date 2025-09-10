@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { ArrowRight, Menu, X, Phone, Mail, Linkedin, Twitter, Scale, Award, Building, Briefcase } from "lucide-react"
+import { ArrowRight, Menu, X, Phone, Mail, Linkedin, Twitter, Scale, Building, Users, Trophy, Briefcase, GraduationCap } from "lucide-react"
 
-export default function AboutPage() {
+export default function ServicesPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
   const [scrollY, setScrollY] = useState(0)
@@ -35,8 +35,12 @@ export default function AboutPage() {
       window.location.href = '/'
       return
     }
-    if (sectionId === 'services' || sectionId === 'contact') {
-      window.location.href = `/#${sectionId}`
+    if (sectionId === 'about') {
+      window.location.href = '/about'
+      return
+    }
+    if (sectionId === 'contact') {
+      window.location.href = '/#contact'
       return
     }
     const section = document.getElementById(sectionId)
@@ -55,6 +59,79 @@ export default function AboutPage() {
     hidden: { opacity: 0 },
     show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
   }
+
+  const services = [
+    {
+      title: "Corporate & Venture Transactions",
+      description: "Navigate complex corporate and venture transactions with clarity and confidence. From initial formation to strategic financing, M&A, and ongoing corporate counsel, we structure, negotiate, and protect your business interests, ensuring a foundation for sustained growth.",
+      image: "https://images.unsplash.com/photo-1560472355-536de3962603?auto=format&fit=crop&w=800&q=80",
+      alt: "Corporate Law",
+      icon: <Building className="h-8 w-8" />,
+      services: [
+        "Entity Formation and Structuring: LLCs, C‑Corps, partnerships, governance documents.",
+        "Venture Financings: Represent VC funds and startups in debt and equity financings.",
+        "Mergers & Acquisitions: Buy‑side and sell‑side legal counsel for acquisitions, joint ventures, asset sales.",
+        "Commercial Contracts: Licensing agreements, distribution deals, service agreements.",
+        "Employment & Equity Matters: Executive contracts, stock options, ESOP plans.",
+        "Compliance & Risk Advisory: Regulatory strategy, securities compliance, risk mitigation."
+      ]
+    },
+    {
+      title: "NIL & Athlete Representation",
+      description: "For student‑athletes, we are more than just legal counsel; we are your strategic partners. We safeguard your eligibility while building your brand, providing practical NIL guidance, expert contract negotiation, and robust business structuring. Maximize today's opportunities and confidently prepare for a lasting career.",
+      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80",
+      alt: "Sports and Athletes",
+      icon: <Trophy className="h-8 w-8" />,
+      services: [
+        "NIL Contract Review & Negotiation: Endorsements, sponsorships, appearances, social media deals.",
+        "Brand & IP Protection: Trademark filings, publicity rights, licensing deals.",
+        "Business Formation for Athletes: LLC or S‑corps for NIL income management.",
+        "Tax & Compliance Guidance: 1099 vs W‑2 considerations, NCAA/CSC compliance alignment.",
+        "Long‑Term Planning: Transitioning from college NIL to professional contracts, equity stakes, and royalties."
+      ]
+    },
+    {
+      title: "NIL Collective Representation",
+      description: "In a rapidly evolving regulatory landscape, NIL collectives demand proactive and precise legal strategy. We provide comprehensive support for governance, compliance, donor agreements, and athlete contracts, ensuring your programs remain credible, competitive, and sustainable.",
+      image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80",
+      alt: "Team Collaboration",
+      icon: <Users className="h-8 w-8" />,
+      services: [
+        "Entity Structuring: For‑profit vs nonprofit, tax strategy, governance.",
+        "Compliance Policies: NIL rule navigation, NCAA & CSC regulatory alignment.",
+        "Contract Infrastructure: Templates for athlete deals, donor agreements, sponsorship partnerships.",
+        "Ongoing Legal Counsel: Monthly retainer services for compliance monitoring, contract drafting, and governance updates.",
+        "Audits & Risk Reviews: Annual compliance audits for donor reassurance and institutional credibility."
+      ]
+    },
+    {
+      title: "Brand & Sponsor Advisory",
+      description: "Brands partnering with athletes face distinct legal and regulatory complexities. We empower sponsors and agencies to structure impactful deals, protect intellectual property, and expertly navigate NIL and advertising regulations, ensuring effective and fully compliant campaigns.",
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
+      alt: "Brand Strategy",
+      icon: <Briefcase className="h-8 w-8" />,
+      services: [
+        "Athlete Sponsorship Deals: Negotiation, drafting, compliance checks.",
+        "Campaign Structuring: Social media, merchandise, appearances, joint ventures.",
+        "IP & Licensing Agreements: Co‑branding, trademarks, content rights.",
+        "Regulatory Compliance: State law, NCAA rules, FTC advertising guidelines."
+      ]
+    },
+    {
+      title: "University & Institutional Counsel",
+      description: "Colleges and athletic departments are navigating the unprecedented shifts of the NIL era. We provide essential policy drafting, comprehensive compliance training, and rigorous contract oversight. Our expertise protects your institution, supports your student‑athletes, and preserves the integrity of your programs.",
+      image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80",
+      alt: "University Campus",
+      icon: <GraduationCap className="h-8 w-8" />,
+      services: [
+        "Policy Drafting: NIL handbooks, compliance guides, contract templates.",
+        "Workshops & Training: For compliance officers, athletes, and coaches.",
+        "Third‑Party Risk Management: Vetting contracts with collectives and sponsors.",
+        "Legal Audits: Assessing NIL ecosystem for compliance and reputational risk.",
+        "Strategic Advisory: Supporting schools in revenue‑sharing and post‑House v. NCAA transition."
+      ]
+    }
+  ]
 
   return (
     <div className="min-h-full bg-gray-50 text-gray-900 font-inter">
@@ -97,13 +174,13 @@ export default function AboutPage() {
               </button>
               <button 
                 onClick={() => scrollToSection('about')}
-                className="text-sm font-normal transition-colors text-black font-medium"
+                className="text-sm font-normal transition-colors text-gray-700 hover:text-black"
               >
                 About
               </button>
               <button 
-                onClick={() => window.location.href = '/services'}
-                className="text-sm font-normal transition-colors text-gray-700 hover:text-black"
+                onClick={() => scrollToSection('services')}
+                className="text-sm font-normal transition-colors text-black font-medium"
               >
                 Services
               </button>
@@ -146,8 +223,8 @@ export default function AboutPage() {
             >
               <div className="space-y-4">
                 <button onClick={() => scrollToSection('home')} className="block w-full text-left text-sm font-normal text-gray-700 hover:text-black">Home</button>
-                <button onClick={() => scrollToSection('about')} className="block w-full text-left text-sm font-medium text-black">About</button>
-                <button onClick={() => window.location.href = '/services'} className="block w-full text-left text-sm font-normal text-gray-700 hover:text-black">Services</button>
+                <button onClick={() => scrollToSection('about')} className="block w-full text-left text-sm font-normal text-gray-700 hover:text-black">About</button>
+                <button onClick={() => scrollToSection('services')} className="block w-full text-left text-sm font-medium text-black">Services</button>
                 <button onClick={() => window.location.href = '/contact'} className="w-full mt-4 px-6 py-2.5 text-sm font-medium bg-black text-white">
                   Schedule Consultation
                 </button>
@@ -162,8 +239,8 @@ export default function AboutPage() {
         {/* Background Image with Parallax */}
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1454923634634-bd1614719a7b?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Professional legal consultation"
+            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1920&q=80"
+            alt="Legal services and expertise"
             fill
             priority
             className="object-cover will-change-transform"
@@ -192,23 +269,23 @@ export default function AboutPage() {
                   variants={fadeUp}
                 >
                   <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                  About Momentum Legal
+                  Our Services
                 </motion.div>
 
                 <motion.h1 
                   className="lg:text-7xl leading-none text-5xl font-light text-white tracking-tight"
                   variants={fadeUp}
                 >
-                  About
+                  Legal
                   <br />
-                  <span className="font-medium">Momentum Legal</span>
+                  <span className="font-medium">Services</span>
                 </motion.h1>
 
                 <motion.p 
                   className="text-lg lg:text-xl font-light leading-relaxed max-w-3xl text-gray-200"
                   variants={fadeUp}
                 >
-                  Discover the vision, values, and expertise that drive our commitment to excellence in legal representation.
+                  At Momentum Legal, we deliver more than just legal services—we provide the clarity, protection, and momentum you need to succeed. Whether you're closing a venture deal, navigating NIL opportunities, or building institutional compliance, our mission is to turn your complex challenges into lasting opportunities. We help you move forward with confidence.
                 </motion.p>
               </div>
             </motion.div>
@@ -216,185 +293,91 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission Section */}
+      {/* Services Grid */}
       <section className="py-24 bg-white">
         <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
           <motion.div 
-            className="max-w-4xl mx-auto text-center"
+            className="grid gap-8 lg:gap-12 max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl lg:text-4xl font-light tracking-tight mb-8 text-gray-900">
-              Our
-              <br />
-              <span className="font-medium">Mission</span>
-            </h2>
-            <p className="text-lg lg:text-xl font-light leading-relaxed text-gray-600 mb-12">
-              Our mission at Momentum Legal is to empower you to seize opportunities with clarity, confidence, and creative legal solutions. We thrive at the dynamic intersection of business, sports, and innovation, providing practical guidance for entrepreneurs, athletes, and institutions in fast-moving markets. We are dedicated to protecting your rights, minimizing risk, and fostering lasting growth for those who dare to redefine what's possible.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Wilson Hall Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-            {/* Left Column - Wilson's Info */}
-            <motion.div 
-              className="lg:col-span-2 space-y-8"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-light tracking-tight mb-6 text-gray-900">
-                  Meet
-                  <br />
-                  <span className="font-medium">Wilson Hall</span>
-                </h2>
-              </div>
-
-              <div className="space-y-6 text-lg font-light leading-relaxed text-gray-600">
-                <p>
-                  Momentum Legal was founded by Wilson Hall, a corporate and business transactions attorney with a proven track record in complex deals. He has guided venture-backed startups, including those valued at over $1 billion, and advised Fortune 500 companies through global business challenges.
-                </p>
-                
-                <p>
-                  As the son of an entrepreneur, Wilson brings a unique, hands-on perspective to every client relationship. He understands the drive to build something new and the critical role of trusted advisors in transforming vision into reality.
-                </p>
-                
-                <p>
-                  Wilson's legal foundation was forged at Santa Clara University School of Law, where he earned his Juris Doctor and a High Tech Law Certificate with an Intellectual Property Specialization. This Silicon Valley training equipped him with expertise in both cutting-edge technologies and traditional business law.
-                </p>
-                
-                <p>
-                  Momentum Legal embodies Wilson's core values: initiative, innovation, and integrity. This firm was built for clients who are ready to take charge, pursue ambitious goals, and partner with a lawyer who not only masters the law, but deeply understands the fast-paced business realities of today's competitive markets.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Right Column - Visual & Values */}
-            <motion.div 
-              className="lg:col-span-1 space-y-8"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              {/* Visual Element */}
-              <div className="bg-white p-8 border border-gray-100 text-center">
-                <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                  className="mb-6"
-                >
-                  <Scale className="h-20 w-20 text-black mx-auto" />
-                </motion.div>
-                <h3 className="text-xl font-medium mb-2 text-gray-900">Excellence in Law</h3>
-                <p className="text-sm text-gray-600">Built on Initiative, Innovation & Integrity</p>
-              </div>
-
-              {/* Core Values */}
-              <div className="bg-white p-8 border border-gray-100">
-                <h3 className="text-lg font-medium mb-6 text-gray-900">Core Values</h3>
-                <div className="space-y-4">
-                  {[
-                    { icon: <Award className="h-5 w-5" />, title: "Initiative", description: "Taking proactive action for client success" },
-                    { icon: <Building className="h-5 w-5" />, title: "Innovation", description: "Leveraging cutting-edge solutions and strategies" },
-                    { icon: <Briefcase className="h-5 w-5" />, title: "Integrity", description: "Maintaining the highest ethical standards" }
-                  ].map((value, index) => (
-                    <motion.div 
-                      key={index}
-                      className="flex items-start gap-3"
-                      whileHover={{ x: 4 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <div className="text-black mt-1">
-                        {value.icon}
+            {services.map((service, index) => (
+              <motion.div 
+                key={index}
+                className="group"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center">
+                  {/* Service Image & Icon */}
+                  <motion.div 
+                    className="lg:col-span-1"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="relative">
+                      <div className="aspect-square overflow-hidden rounded-2xl bg-gray-900">
+                        <img 
+                          src={service.image} 
+                          alt={service.alt}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 group-hover:bg-black/10 transition-colors duration-300 bg-black/20"></div>
+                        <div className="absolute top-6 left-6">
+                          <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-black">
+                            {service.icon}
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <div className="font-medium text-gray-900 text-sm">{value.title}</div>
-                        <div className="text-sm text-gray-600">{value.description}</div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+                    </div>
+                  </motion.div>
 
-      {/* Credentials Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
-          <motion.div 
-            className="max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-light tracking-tight mb-6 text-gray-900">
-                Education &
-                <br />
-                <span className="font-medium">Credentials</span>
-              </h2>
-            </div>
+                  {/* Service Content */}
+                  <div className="lg:col-span-2 space-y-6">
+                    <div>
+                      <h2 className="text-3xl lg:text-4xl font-light tracking-tight mb-4 text-gray-900">
+                        <span className="font-medium">{service.title}</span>
+                      </h2>
+                      <p className="text-lg font-light leading-relaxed text-gray-600 mb-6">
+                        {service.description}
+                      </p>
+                    </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                {
-                  category: "Legal Education",
-                  items: [
-                    { label: "Juris Doctor", detail: "Santa Clara University School of Law, 2022" },
-                    { label: "High Tech Law Certificate", detail: "IP Specialization with Honors" }
-                  ]
-                },
-                {
-                  category: "Academic Background",
-                  items: [
-                    { label: "Bachelor of Arts", detail: "Sonoma State University, 2019" },
-                    { label: "Field of Study", detail: "Criminology and Criminal Justice Studies" }
-                  ]
-                },
-                {
-                  category: "Bar Admissions",
-                  items: [
-                    { label: "California", detail: "State Bar of California" }
-                  ]
-                },
-                {
-                  category: "Specializations",
-                  items: [
-                    { label: "Corporate Transactions", detail: "VC funds, startups, M&A" },
-                    { label: "NIL & Sports Law", detail: "Athletes, collectives, compliance" }
-                  ]
-                }
-              ].map((section, index) => (
-                <motion.div 
-                  key={index}
-                  className="p-6 border border-gray-100 bg-gray-50"
-                  whileHover={{ y: -2 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h3 className="text-base font-medium mb-4 text-gray-900">{section.category}</h3>
-                  <div className="space-y-3">
-                    {section.items.map((item, i) => (
-                      <div key={i}>
-                        <div className="font-normal text-gray-800 text-sm">{item.label}</div>
-                        <div className="text-sm text-gray-600">{item.detail}</div>
-                      </div>
-                    ))}
+                    {/* Service Details */}
+                    <div className="space-y-3">
+                      <h3 className="text-base font-medium text-gray-900 mb-4">Key Services:</h3>
+                      <ul className="space-y-3">
+                        {service.services.map((item, i) => {
+                          const [label, description] = item.split(': ')
+                          return (
+                            <motion.li 
+                              key={i}
+                              className="flex items-start gap-3"
+                              whileHover={{ x: 4 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <div className="w-1.5 h-1.5 rounded-full bg-black mt-2 flex-shrink-0"></div>
+                              <div className="text-sm font-light leading-relaxed text-gray-600">
+                                <span className="font-normal text-gray-800">{label}:</span> {description}
+                              </div>
+                            </motion.li>
+                          )
+                        })}
+                      </ul>
+                    </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                </div>
+                
+                {/* Separator */}
+                {index < services.length - 1 && (
+                  <div className="mt-12 pt-12 border-t border-gray-100"></div>
+                )}
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
@@ -410,12 +393,12 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl lg:text-5xl font-light tracking-tight leading-tight mb-8">
-              Ready to partner with
+              Ready to get
               <br />
-              <span className="font-medium">Momentum Legal?</span>
+              <span className="font-medium">started?</span>
             </h2>
             <p className="text-lg font-light leading-relaxed max-w-2xl mx-auto text-gray-300 mb-12">
-              Schedule a free consultation with Wilson Hall and discover how Momentum Legal can drive your vision forward with clarity, confidence, and creative solutions.
+              Schedule a free consultation to discuss how our legal services can support your goals and drive your success forward.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <motion.button 
@@ -428,12 +411,12 @@ export default function AboutPage() {
                 <ArrowRight className="w-4 h-4" />
               </motion.button>
               <motion.button 
-                onClick={() => window.location.href = '/services'}
+                onClick={() => scrollToSection('about')}
                 className="border px-8 py-4 text-sm font-medium transition-colors border-gray-600 hover:border-white text-white"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Explore Our Services
+                Learn About Our Team
               </motion.button>
             </div>
           </motion.div>
@@ -476,8 +459,8 @@ export default function AboutPage() {
               <h4 className="text-sm font-medium mb-4 tracking-wide">NAVIGATION</h4>
               <div className="space-y-3 text-sm font-light text-gray-400">
                 <button onClick={() => scrollToSection('home')} className="block transition-colors hover:text-white">Home</button>
-                <button onClick={() => scrollToSection('about')} className="block transition-colors text-white">About</button>
-                <button onClick={() => window.location.href = '/services'} className="block transition-colors hover:text-white">Services</button>
+                <button onClick={() => scrollToSection('about')} className="block transition-colors hover:text-white">About</button>
+                <button onClick={() => scrollToSection('services')} className="block transition-colors text-white">Services</button>
                 <button onClick={() => scrollToSection('contact')} className="block transition-colors hover:text-white">Contact</button>
               </div>
             </div>
