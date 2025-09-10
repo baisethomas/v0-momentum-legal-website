@@ -395,7 +395,7 @@ export default function MomentumLegalV2() {
                   <span className="text-xl font-poppins font-semibold tracking-tight uppercase">
                     <span className="text-2xl">M</span>OMENTUM <span className="text-2xl">L</span>EGAL
                   </span>
-                  <span className="text-xs font-poppins font-normal tracking-wide text-gray-300 uppercase">
+                  <span className="text-[10px] font-poppins font-normal tracking-wide text-gray-300 uppercase">
                     a Professional Corporation
                   </span>
                 </div>
