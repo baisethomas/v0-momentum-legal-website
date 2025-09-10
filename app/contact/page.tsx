@@ -454,7 +454,7 @@ export default function ContactPage() {
           </div>
           
           <div className="border-t pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-light text-gray-500 border-gray-800">
-            <p>© 2024 Momentum Legal. All rights reserved.</p>
+            <p>© 2025 Momentum Legal. All rights reserved.</p>
             <div className="flex gap-6">
               <a href="#" className="transition-colors hover:text-gray-300">Privacy Policy</a>
               <a href="#" className="transition-colors hover:text-gray-300">Terms of Service</a>
