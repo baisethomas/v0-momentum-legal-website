@@ -67,6 +67,7 @@ export default function ServicesPage() {
       image: "https://images.unsplash.com/photo-1560472355-536de3962603?auto=format&fit=crop&w=800&q=80",
       alt: "Corporate Law",
       icon: <Building className="h-8 w-8" />,
+      id: "corporate-venture",
       services: [
         "Entity Formation and Structuring: LLCs, C‑Corps, partnerships, governance documents.",
         "Venture Financings: Represent VC funds and startups in debt and equity financings.",
@@ -82,6 +83,7 @@ export default function ServicesPage() {
       image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80",
       alt: "Sports and Athletes",
       icon: <Trophy className="h-8 w-8" />,
+      id: "nil-athlete",
       services: [
         "NIL Contract Review & Negotiation: Endorsements, sponsorships, appearances, social media deals.",
         "Brand & IP Protection: Trademark filings, publicity rights, licensing deals.",
@@ -96,6 +98,7 @@ export default function ServicesPage() {
       image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80",
       alt: "Team Collaboration",
       icon: <Users className="h-8 w-8" />,
+      id: "collective",
       services: [
         "Entity Structuring: For‑profit vs nonprofit, tax strategy, governance.",
         "Compliance Policies: NIL rule navigation, NCAA & CSC regulatory alignment.",
@@ -110,6 +113,7 @@ export default function ServicesPage() {
       image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
       alt: "Brand Strategy",
       icon: <Briefcase className="h-8 w-8" />,
+      id: "brand-sponsor",
       services: [
         "Athlete Sponsorship Deals: Negotiation, drafting, compliance checks.",
         "Campaign Structuring: Social media, merchandise, appearances, joint ventures.",
@@ -123,6 +127,7 @@ export default function ServicesPage() {
       image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80",
       alt: "University Campus",
       icon: <GraduationCap className="h-8 w-8" />,
+      id: "university-institutional",
       services: [
         "Policy Drafting: NIL handbooks, compliance guides, contract templates.",
         "Workshops & Training: For compliance officers, athletes, and coaches.",
@@ -155,12 +160,17 @@ export default function ServicesPage() {
               <img 
                 src="/1x/logo.png" 
                 alt="Momentum Legal" 
-                className="h-8 w-auto filter invert"
+                className="h-10 w-auto filter invert"
               />
               <div className="flex flex-col leading-tight">
                 <div className="flex items-center gap-2">
-                  <span className="text-xl font-poppins font-semibold tracking-tight text-white uppercase">MOMENTUM LEGAL</span>
+                  <span className="text-xl font-poppins font-semibold tracking-tight text-white uppercase">
+                    <span className="text-2xl">M</span>OMENTUM <span className="text-2xl">L</span>EGAL
+                  </span>
                 </div>
+                <span className="text-xs font-poppins font-normal tracking-wide text-gray-300 uppercase">
+                  a Professional Corporation
+                </span>
               </div>
             </motion.div>
 
@@ -311,6 +321,7 @@ export default function ServicesPage() {
             {services.map((service, index) => (
               <motion.div 
                 key={index}
+                id={service.id}
                 className="group"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -437,11 +448,15 @@ export default function ServicesPage() {
                 <img 
                   src="/1x/logo.png" 
                   alt="Momentum Legal" 
-                  className="h-8 w-auto filter invert"
+                  className="h-10 w-auto filter invert"
                 />
                 <div className="flex flex-col">
-                  <span className="text-xl font-poppins font-semibold tracking-tight uppercase">MOMENTUM LEGAL</span>
-                  <span className="text-[12px] text-gray-400">The Power Behind Your Next Move.</span>
+                  <span className="text-xl font-poppins font-semibold tracking-tight uppercase">
+                    <span className="text-2xl">M</span>OMENTUM <span className="text-2xl">L</span>EGAL
+                  </span>
+                  <span className="text-xs font-poppins font-normal tracking-wide text-gray-300 uppercase">
+                    a Professional Corporation
+                  </span>
                 </div>
               </div>
               <p className="text-sm font-light leading-relaxed max-w-md mb-6 text-gray-400">

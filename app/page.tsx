@@ -51,12 +51,17 @@ export default function MomentumLegalV2() {
               <img 
                 src="/1x/logo.png" 
                 alt="Momentum Legal" 
-                className="h-8 w-auto filter invert"
+                className="h-10 w-auto filter invert"
               />
               <div className="flex flex-col leading-tight">
                 <div className="flex items-center gap-2">
-                  <span className="text-xl font-poppins font-semibold tracking-tight text-white uppercase">MOMENTUM LEGAL</span>
+                  <span className="text-xl font-poppins font-semibold tracking-tight text-white uppercase">
+                    <span className="text-2xl">M</span>OMENTUM <span className="text-2xl">L</span>EGAL
+                  </span>
                 </div>
+                <span className="text-xs font-poppins font-normal tracking-wide text-gray-300 uppercase">
+                  a Professional Corporation
+                </span>
               </div>
             </motion.div>
 
@@ -228,7 +233,7 @@ export default function MomentumLegalV2() {
                 >
                   <div className="relative h-80 lg:h-96 overflow-hidden bg-gray-900">
                     <img 
-                      src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80" 
+                      src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                       alt="Deal Room" 
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
@@ -331,55 +336,31 @@ export default function MomentumLegalV2() {
                 {[
                   {
                     title: "Corporate & Venture Transactions",
-                    description: "Navigate complex corporate and venture transactions with clarity and confidence. From initial formation to strategic financing, M&A, and ongoing corporate counsel, we structure, negotiate, and protect your business interests, ensuring a foundation for sustained growth.",
+                    description: "Complete corporate legal support from entity formation to M&A. We handle venture financings, commercial contracts, employment matters, and compliance strategy to protect and grow your business.",
                     image: "https://images.unsplash.com/photo-1560472355-536de3962603?auto=format&fit=crop&w=800&q=80",
                     alt: "Corporate Law",
-                    services: [
-                      "Entity Formation and Structuring: LLCs, C‑Corps, partnerships, governance documents.",
-                      "Venture Financings: Represent VC funds and startups in debt and equity financings.",
-                      "Mergers & Acquisitions: Buy‑side and sell‑side legal counsel for acquisitions, joint ventures, asset sales.",
-                      "Commercial Contracts: Licensing agreements, distribution deals, service agreements.",
-                      "Employment & Equity Matters: Executive contracts, stock options, ESOP plans.",
-                      "Compliance & Risk Advisory: Regulatory strategy, securities compliance, risk mitigation."
-                    ]
+                    anchor: "corporate-venture"
                   },
                   {
                     title: "NIL & Athlete Representation",
-                    description: "For student‑athletes, we are more than just legal counsel; we are your strategic partners. We safeguard your eligibility while building your brand, providing practical NIL guidance, expert contract negotiation, and robust business structuring. Maximize today's opportunities and confidently prepare for a lasting career.",
-                    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80",
+                    description: "Strategic legal partnership for student-athletes. We handle NIL contracts, brand protection, business formation, and compliance to maximize opportunities while safeguarding eligibility.",
+                    image: "https://images.unsplash.com/photo-1592788703084-17c954dfaeef?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                     alt: "Sports and Athletes",
-                    services: [
-                      "NIL Contract Review & Negotiation: Endorsements, sponsorships, appearances, social media deals.",
-                      "Brand & IP Protection: Trademark filings, publicity rights, licensing deals.",
-                      "Business Formation for Athletes: LLC or S‑corps for NIL income management.",
-                      "Tax & Compliance Guidance: 1099 vs W‑2 considerations, NCAA/CSC compliance alignment.",
-                      "Long‑Term Planning: Transitioning from college NIL to professional contracts, equity stakes, and royalties."
-                    ]
+                    anchor: "nil-athlete"
                   },
                   {
                     title: "NIL Collective Representation",
-                    description: "In a rapidly evolving regulatory landscape, NIL collectives demand proactive and precise legal strategy. We provide comprehensive support for governance, compliance, donor agreements, and athlete contracts, ensuring your programs remain credible, competitive, and sustainable.",
+                    description: "Comprehensive legal support for NIL collectives navigating complex regulations. We handle entity structuring, compliance policies, contract templates, and ongoing counsel to maintain credibility and sustainability.",
                     image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80",
                     alt: "Team Collaboration",
-                    services: [
-                      "Entity Structuring: For‑profit vs nonprofit, tax strategy, governance.",
-                      "Compliance Policies: NIL rule navigation, NCAA & CSC regulatory alignment.",
-                      "Contract Infrastructure: Templates for athlete deals, donor agreements, sponsorship partnerships.",
-                      "Ongoing Legal Counsel: Monthly retainer services for compliance monitoring, contract drafting, and governance updates.",
-                      "Audits & Risk Reviews: Annual compliance audits for donor reassurance and institutional credibility."
-                    ]
+                    anchor: "collective"
                   },
                   {
                     title: "Brand & Sponsor Advisory",
-                    description: "Brands partnering with athletes face distinct legal and regulatory complexities. We empower sponsors and agencies to structure impactful deals, protect intellectual property, and expertly navigate NIL and advertising regulations, ensuring effective and fully compliant campaigns.",
+                    description: "Expert guidance for brands and agencies partnering with athletes. We structure sponsorship deals, protect intellectual property, and ensure compliance with NIL and advertising regulations for effective campaigns.",
                     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
                     alt: "Brand Strategy",
-                    services: [
-                      "Athlete Sponsorship Deals: Negotiation, drafting, compliance checks.",
-                      "Campaign Structuring: Social media, merchandise, appearances, joint ventures.",
-                      "IP & Licensing Agreements: Co‑branding, trademarks, content rights.",
-                      "Regulatory Compliance: State law, NCAA rules, FTC advertising guidelines."
-                    ]
+                    anchor: "brand-sponsor"
                   }
                 ].slice(0, 4).map((service, index) => (
                   <motion.div 
@@ -399,16 +380,13 @@ export default function MomentumLegalV2() {
                     <p className="text-sm font-light leading-relaxed text-gray-600 mb-4">
                       {service.description}
                     </p>
-                    <ul className="text-sm font-light leading-relaxed text-gray-600 space-y-2">
-                      {service.services.map((item, i) => {
-                        const [label, description] = item.split(': ')
-                        return (
-                          <li key={i}>
-                            <span className="font-normal text-gray-800">{label}:</span> {description}
-                          </li>
-                        )
-                      })}
-                    </ul>
+                    <a 
+                      href={`/services#${service.anchor}`}
+                      className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                    >
+                      Click to See More
+                      <ArrowRight className="ml-1 h-4 w-4" />
+                    </a>
                   </motion.div>
                 ))}
 
@@ -427,24 +405,15 @@ export default function MomentumLegalV2() {
                   </div>
                   <h3 className="text-lg font-medium mb-3 text-gray-900">University & Institutional Counsel</h3>
                   <p className="text-sm font-light leading-relaxed text-gray-600 mb-4">
-                    Colleges and athletic departments are navigating the unprecedented shifts of the NIL era. We provide essential policy drafting, comprehensive compliance training, and rigorous contract oversight. Our expertise protects your institution, supports your student‑athletes, and preserves the integrity of your programs.
+                    Essential legal support for colleges and athletic departments navigating NIL changes. We provide policy drafting, compliance training, contract oversight, and strategic advisory to protect your institution and support student-athletes.
                   </p>
-                  <ul className="text-sm font-light leading-relaxed text-gray-600 space-y-2">
-                    {[
-                      "Policy Drafting: NIL handbooks, compliance guides, contract templates.",
-                      "Workshops & Training: For compliance officers, athletes, and coaches.",
-                      "Third‑Party Risk Management: Vetting contracts with collectives and sponsors.",
-                      "Legal Audits: Assessing NIL ecosystem for compliance and reputational risk.",
-                      "Strategic Advisory: Supporting schools in revenue‑sharing and post‑House v. NCAA transition."
-                    ].map((item, i) => {
-                      const [label, description] = item.split(': ')
-                      return (
-                        <li key={i}>
-                          <span className="font-normal text-gray-800">{label}:</span> {description}
-                        </li>
-                      )
-                    })}
-                  </ul>
+                  <a 
+                    href="/services#university-institutional" 
+                    className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                  >
+                    Click to See More
+                    <ArrowRight className="ml-1 h-4 w-4" />
+                  </a>
                 </motion.div>
               </div>
             </motion.div>
@@ -621,11 +590,15 @@ export default function MomentumLegalV2() {
                 <img 
                   src="/1x/logo.png" 
                   alt="Momentum Legal" 
-                  className="h-8 w-auto filter invert"
+                  className="h-10 w-auto filter invert"
                 />
                 <div className="flex flex-col">
-                  <span className="text-xl font-poppins font-semibold tracking-tight uppercase">MOMENTUM LEGAL</span>
-                  <span className="text-[12px] text-gray-400">The Power Behind Your Next Move.</span>
+                  <span className="text-xl font-poppins font-semibold tracking-tight uppercase">
+                    <span className="text-2xl">M</span>OMENTUM <span className="text-2xl">L</span>EGAL
+                  </span>
+                  <span className="text-xs font-poppins font-normal tracking-wide text-gray-300 uppercase">
+                    a Professional Corporation
+                  </span>
                 </div>
               </div>
               <p className="text-sm font-light leading-relaxed max-w-md mb-6 text-gray-400">

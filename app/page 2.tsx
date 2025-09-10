@@ -268,7 +268,7 @@ export default function MomentumLegalHomepage() {
                 transition: { duration: 0.3 }
               }}
             >
-              MOMENTUM LEGAL
+              <span className="text-2xl">M</span>OMENTUM <span className="text-2xl">L</span>EGAL
             </motion.span>
             <motion.span 
               className="block text-white mt-2"

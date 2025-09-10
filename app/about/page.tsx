@@ -78,12 +78,17 @@ export default function AboutPage() {
               <img 
                 src="/1x/logo.png" 
                 alt="Momentum Legal" 
-                className="h-8 w-auto filter invert"
+                className="h-10 w-auto filter invert"
               />
               <div className="flex flex-col leading-tight">
                 <div className="flex items-center gap-2">
-                  <span className="text-xl font-poppins font-semibold tracking-tight text-white uppercase">MOMENTUM LEGAL</span>
+                  <span className="text-xl font-poppins font-semibold tracking-tight text-white uppercase">
+                    <span className="text-2xl">M</span>OMENTUM <span className="text-2xl">L</span>EGAL
+                  </span>
                 </div>
+                <span className="text-xs font-poppins font-normal tracking-wide text-gray-300 uppercase">
+                  a Professional Corporation
+                </span>
               </div>
             </motion.div>
 
@@ -167,7 +172,7 @@ export default function AboutPage() {
         {/* Background Image with Parallax */}
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1454923634634-bd1614719a7b?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="https://images.unsplash.com/photo-1505547828843-176834e42154?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Professional legal consultation"
             fill
             priority
@@ -454,11 +459,15 @@ export default function AboutPage() {
                 <img 
                   src="/1x/logo.png" 
                   alt="Momentum Legal" 
-                  className="h-8 w-auto filter invert"
+                  className="h-10 w-auto filter invert"
                 />
                 <div className="flex flex-col">
-                  <span className="text-xl font-poppins font-semibold tracking-tight uppercase">MOMENTUM LEGAL</span>
-                  <span className="text-[12px] text-gray-400">The Power Behind Your Next Move.</span>
+                  <span className="text-xl font-poppins font-semibold tracking-tight uppercase">
+                    <span className="text-2xl">M</span>OMENTUM <span className="text-2xl">L</span>EGAL
+                  </span>
+                  <span className="text-xs font-poppins font-normal tracking-wide text-gray-300 uppercase">
+                    a Professional Corporation
+                  </span>
                 </div>
               </div>
               <p className="text-sm font-light leading-relaxed max-w-md mb-6 text-gray-400">
