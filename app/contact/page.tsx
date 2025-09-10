@@ -77,7 +77,7 @@ export default function ContactPage() {
     <div className="min-h-full bg-gray-50 text-gray-900 font-inter">
       {/* Navigation */}
       <motion.nav 
-        className="fixed top-0 w-full backdrop-blur-sm border-b z-50 bg-white/95 border-gray-100"
+        className="fixed top-0 w-full backdrop-blur-sm border-b z-50 bg-black/95 border-gray-800"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -95,11 +95,11 @@ export default function ContactPage() {
               <img 
                 src="/1x/logo.png" 
                 alt="Momentum Legal" 
-                className="h-8 w-auto"
+                className="h-8 w-auto filter invert"
               />
               <div className="flex flex-col leading-tight">
                 <div className="flex items-center gap-2">
-                  <span className="text-xl font-medium tracking-tight">Momentum Legal</span>
+                  <span className="text-xl font-medium tracking-tight text-white">Momentum Legal</span>
                 </div>
               </div>
             </motion.div>
@@ -108,31 +108,31 @@ export default function ContactPage() {
             <div className="hidden lg:flex items-center gap-8">
               <button 
                 onClick={() => scrollToSection('home')}
-                className="text-sm font-normal transition-colors text-gray-700 hover:text-black"
+                className="text-sm font-normal transition-colors text-gray-300 hover:text-white"
               >
                 Home
               </button>
               <button 
                 onClick={() => scrollToSection('about')}
-                className="text-sm font-normal transition-colors text-gray-700 hover:text-black"
+                className="text-sm font-normal transition-colors text-gray-300 hover:text-white"
               >
                 About
               </button>
               <button 
                 onClick={() => scrollToSection('services')}
-                className="text-sm font-normal transition-colors text-gray-700 hover:text-black"
+                className="text-sm font-normal transition-colors text-gray-300 hover:text-white"
               >
                 Services
               </button>
-              <div className="h-5 w-px bg-gray-200"></div>
-              <a href="https://www.linkedin.com/company/momentum-legal" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-black transition-colors" aria-label="LinkedIn">
+              <div className="h-5 w-px bg-gray-600"></div>
+              <a href="https://www.linkedin.com/company/momentum-legal" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="https://twitter.com/momentumlegal" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-black transition-colors" aria-label="X (Twitter)">
+              <a href="https://twitter.com/momentumlegal" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="X (Twitter)">
                 <Twitter className="w-5 h-5" />
               </a>
               <motion.div 
-                className="px-6 py-2.5 text-sm font-medium transition-colors bg-black text-white"
+                className="px-6 py-2.5 text-sm font-medium transition-colors bg-white text-black"
               >
                 Schedule Consultation
               </motion.div>
@@ -142,7 +142,7 @@ export default function ContactPage() {
             <div className="lg:hidden">
               <button 
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2"
+                className="p-2 text-white"
               >
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
@@ -152,17 +152,17 @@ export default function ContactPage() {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <motion.div 
-              className="lg:hidden border-t border-gray-100 py-4"
+              className="lg:hidden border-t border-gray-700 py-4"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
             >
               <div className="space-y-4">
-                <button onClick={() => scrollToSection('home')} className="block w-full text-left text-sm font-normal text-gray-700 hover:text-black">Home</button>
-                <button onClick={() => scrollToSection('about')} className="block w-full text-left text-sm font-normal text-gray-700 hover:text-black">About</button>
-                <button onClick={() => scrollToSection('services')} className="block w-full text-left text-sm font-normal text-gray-700 hover:text-black">Services</button>
-                <div className="w-full mt-4 px-6 py-2.5 text-sm font-medium bg-black text-white text-center">
+                <button onClick={() => scrollToSection('home')} className="block w-full text-left text-sm font-normal text-gray-300 hover:text-white">Home</button>
+                <button onClick={() => scrollToSection('about')} className="block w-full text-left text-sm font-normal text-gray-300 hover:text-white">About</button>
+                <button onClick={() => scrollToSection('services')} className="block w-full text-left text-sm font-normal text-gray-300 hover:text-white">Services</button>
+                <div className="w-full mt-4 px-6 py-2.5 text-sm font-medium bg-white text-black text-center">
                   Schedule Consultation
                 </div>
               </div>
