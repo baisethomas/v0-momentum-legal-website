@@ -338,84 +338,74 @@ export default function MomentumLegalV2() {
                 {[
                   {
                     title: "Corporate & Venture Transactions",
-                    description: "Complete corporate legal support from entity formation to M&A. We handle venture financings, commercial contracts, employment matters, and compliance strategy to protect and grow your business.",
-                    image: "https://images.unsplash.com/photo-1560472355-536de3962603?auto=format&fit=crop&w=800&q=80",
-                    alt: "Corporate Law",
+                    gradient: "bg-gradient-to-tr from-slate-700 to-slate-500",
+                    ring: "ring-slate-300",
                     anchor: "corporate-venture"
                   },
                   {
                     title: "NIL & Athlete Representation",
-                    description: "Strategic legal partnership for student-athletes. We handle NIL contracts, brand protection, business formation, and compliance to maximize opportunities while safeguarding eligibility.",
-                    image: "https://images.unsplash.com/photo-1592788703084-17c954dfaeef?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    alt: "Sports and Athletes",
+                    gradient: "bg-gradient-to-tr from-emerald-700 to-emerald-500",
+                    ring: "ring-emerald-300",
                     anchor: "nil-athlete"
                   },
                   {
                     title: "NIL Collective Representation",
-                    description: "Comprehensive legal support for NIL collectives navigating complex regulations. We handle entity structuring, compliance policies, contract templates, and ongoing counsel to maintain credibility and sustainability.",
-                    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80",
-                    alt: "Team Collaboration",
+                    gradient: "bg-gradient-to-tr from-indigo-700 to-indigo-500",
+                    ring: "ring-indigo-300",
                     anchor: "collective"
                   },
                   {
                     title: "Brand & Sponsor Advisory",
-                    description: "Expert guidance for brands and agencies partnering with athletes. We structure sponsorship deals, protect intellectual property, and ensure compliance with NIL and advertising regulations for effective campaigns.",
-                    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
-                    alt: "Brand Strategy",
+                    gradient: "bg-gradient-to-tr from-purple-700 to-purple-500",
+                    ring: "ring-purple-300",
                     anchor: "brand-sponsor"
                   }
                 ].slice(0, 4).map((service, index) => (
                   <motion.div 
                     key={index}
-                    className="group p-8 border transition-colors cursor-pointer border-gray-100 hover:border-gray-200"
-                    whileHover={{ y: -4 }}
+                    className={`group relative overflow-hidden ring-1 ${service.ring} text-white ${service.gradient} rounded-2xl p-5 transition-all duration-300 cursor-pointer hover:shadow-xl`}
+                    whileHover={{ y: -4, scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="mb-6 w-full h-28 overflow-hidden rounded-lg">
-                      <img 
-                        src={service.image} 
-                        alt={service.alt}
-                        className="w-full h-full object-cover"
-                      />
+                    <div 
+                      className="absolute inset-0"
+                      style={{
+                        background: "radial-gradient(160px 160px at 30% 30%, rgba(255,255,255,0.25), transparent 60%), radial-gradient(220px 220px at 70% 70%, rgba(0,0,0,0.25), transparent 60%)"
+                      }}
+                    />
+                    <div className="relative flex flex-col h-full justify-between">
+                      <h3 className="text-2xl font-semibold mb-6 text-white leading-tight">{service.title}</h3>
+                      <a 
+                        href={`/services#${service.anchor}`}
+                        className="relative mt-8 h-9 w-9 rounded-full bg-white text-neutral-900 flex items-center justify-center shadow-sm transition-colors hover:text-gray-700 group-hover:scale-110"
+                      >
+                        <ArrowRight className="h-4 w-4" />
+                      </a>
                     </div>
-                    <h3 className="text-lg font-medium mb-3 text-gray-900">{service.title}</h3>
-                    <p className="text-sm font-light leading-relaxed text-gray-600 mb-4">
-                      {service.description}
-                    </p>
-                    <a 
-                      href={`/services#${service.anchor}`}
-                      className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
-                    >
-                      Click to See More
-                      <ArrowRight className="ml-1 h-4 w-4" />
-                    </a>
                   </motion.div>
                 ))}
 
-                {/* University & Institutional Counsel - Full Width */}
+                {/* University & Institutional Counsel */}
                 <motion.div 
-                  className="group p-8 border transition-colors cursor-pointer border-gray-100 hover:border-gray-200 sm:col-span-2"
-                  whileHover={{ y: -4 }}
+                  className="group relative overflow-hidden ring-1 ring-red-300 text-white bg-gradient-to-tr from-red-700 to-red-500 rounded-2xl p-5 transition-all duration-300 cursor-pointer hover:shadow-xl"
+                  whileHover={{ y: -4, scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="mb-6 w-full h-28 overflow-hidden rounded-lg">
-                    <img 
-                      src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80" 
-                      alt="University Campus"
-                      className="w-full h-full object-cover"
-                    />
+                  <div 
+                    className="absolute inset-0"
+                    style={{
+                      background: "radial-gradient(160px 160px at 30% 30%, rgba(255,255,255,0.25), transparent 60%), radial-gradient(220px 220px at 70% 70%, rgba(0,0,0,0.25), transparent 60%)"
+                    }}
+                  />
+                  <div className="relative flex flex-col h-full justify-between">
+                    <h3 className="text-2xl font-semibold mb-6 text-white leading-tight">University & Institutional Counsel</h3>
+                    <a 
+                      href="/services#university-institutional" 
+                      className="relative mt-8 h-9 w-9 rounded-full bg-white text-neutral-900 flex items-center justify-center shadow-sm transition-colors hover:text-gray-700 group-hover:scale-110"
+                    >
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
                   </div>
-                  <h3 className="text-lg font-medium mb-3 text-gray-900">University & Institutional Counsel</h3>
-                  <p className="text-sm font-light leading-relaxed text-gray-600 mb-4">
-                    Essential legal support for colleges and athletic departments navigating NIL changes. We provide policy drafting, compliance training, contract oversight, and strategic advisory to protect your institution and support student-athletes.
-                  </p>
-                  <a 
-                    href="/services#university-institutional" 
-                    className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
-                  >
-                    Click to See More
-                    <ArrowRight className="ml-1 h-4 w-4" />
-                  </a>
                 </motion.div>
               </div>
             </motion.div>
