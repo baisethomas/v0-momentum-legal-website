@@ -304,7 +304,7 @@ export default function MomentumLegalV2() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="bg-white pt-24 pb-24">
+      <section id="services" className="bg-black pt-24 pb-24">
         <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Section Header */}
@@ -315,12 +315,12 @@ export default function MomentumLegalV2() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl lg:text-4xl font-light tracking-tight mb-6 text-gray-900">
+              <h2 className="text-3xl lg:text-4xl font-light tracking-tight mb-6 text-white">
                 Our
                 <br />
                 <span className="font-medium">Services</span>
               </h2>
-              <p className="text-lg font-light leading-relaxed text-gray-600">
+              <p className="text-lg font-light leading-relaxed text-gray-300">
                 Practical, business‑first counsel across corporate, NIL, and institutional needs—so you can move decisively and stay compliant.
               </p>
             </motion.div>
@@ -338,26 +338,26 @@ export default function MomentumLegalV2() {
                 {[
                   {
                     title: "Corporate & Venture Transactions",
-                    gradient: "bg-gradient-to-tr from-slate-700 to-slate-500",
-                    ring: "ring-slate-300",
+                    gradient: "bg-gradient-to-tr from-slate-800 to-slate-600",
+                    ring: "ring-slate-400/30",
                     anchor: "corporate-venture"
                   },
                   {
                     title: "NIL & Athlete Representation",
-                    gradient: "bg-gradient-to-tr from-emerald-700 to-emerald-500",
-                    ring: "ring-emerald-300",
+                    gradient: "bg-gradient-to-tr from-slate-700 to-slate-500",
+                    ring: "ring-slate-400/30",
                     anchor: "nil-athlete"
                   },
                   {
                     title: "NIL Collective Representation",
-                    gradient: "bg-gradient-to-tr from-indigo-700 to-indigo-500",
-                    ring: "ring-indigo-300",
+                    gradient: "bg-gradient-to-tr from-gray-800 to-gray-600",
+                    ring: "ring-gray-400/30",
                     anchor: "collective"
                   },
                   {
                     title: "Brand & Sponsor Advisory",
-                    gradient: "bg-gradient-to-tr from-purple-700 to-purple-500",
-                    ring: "ring-purple-300",
+                    gradient: "bg-gradient-to-tr from-zinc-800 to-zinc-600",
+                    ring: "ring-zinc-400/30",
                     anchor: "brand-sponsor"
                   }
                 ].slice(0, 4).map((service, index) => (
@@ -387,7 +387,7 @@ export default function MomentumLegalV2() {
 
                 {/* University & Institutional Counsel */}
                 <motion.div 
-                  className="group relative overflow-hidden ring-1 ring-red-300 text-white bg-gradient-to-tr from-red-700 to-red-500 rounded-2xl p-5 transition-all duration-300 cursor-pointer hover:shadow-xl"
+                  className="group relative overflow-hidden ring-1 ring-neutral-400/30 text-white bg-gradient-to-tr from-neutral-800 to-neutral-600 rounded-2xl p-5 transition-all duration-300 cursor-pointer hover:shadow-xl"
                   whileHover={{ y: -4, scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
