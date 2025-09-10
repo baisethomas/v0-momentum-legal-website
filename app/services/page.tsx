@@ -80,7 +80,7 @@ export default function ServicesPage() {
     {
       title: "NIL & Athlete Representation",
       description: "For student‑athletes, we are more than just legal counsel; we are your strategic partners. We safeguard your eligibility while building your brand, providing practical NIL guidance, expert contract negotiation, and robust business structuring. Maximize today's opportunities and confidently prepare for a lasting career.",
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1475116730596-402cbd4ff6c1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       alt: "Sports and Athletes",
       icon: <Trophy className="h-8 w-8" />,
       id: "nil-athlete",
