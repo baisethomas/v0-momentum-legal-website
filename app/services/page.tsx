@@ -221,14 +221,19 @@ export default function ServicesPage() {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="space-y-4">
+              <motion.div 
+                className="space-y-4"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.3, ease: "easeOut" }}
+              >
                 <button onClick={() => scrollToSection('home')} className="block w-full text-left text-sm font-normal text-gray-300 hover:text-white">Home</button>
                 <button onClick={() => scrollToSection('about')} className="block w-full text-left text-sm font-normal text-gray-300 hover:text-white">About</button>
                 <button onClick={() => scrollToSection('services')} className="block w-full text-left text-sm font-medium text-white">Services</button>
                 <button onClick={() => window.location.href = '/contact'} className="w-full mt-4 px-6 py-2.5 text-sm font-medium bg-white text-black">
-                  Contact
+                  Schedule Consultation
                 </button>
-              </div>
+              </motion.div>
             </motion.div>
           )}
         </div>
