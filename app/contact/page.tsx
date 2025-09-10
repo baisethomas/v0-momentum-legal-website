@@ -163,7 +163,7 @@ export default function ContactPage() {
                 <button onClick={() => scrollToSection('about')} className="block w-full text-left text-sm font-normal text-gray-300 hover:text-white">About</button>
                 <button onClick={() => scrollToSection('services')} className="block w-full text-left text-sm font-normal text-gray-300 hover:text-white">Services</button>
                 <div className="w-full mt-4 px-6 py-2.5 text-sm font-medium bg-white text-black text-center">
-                  Schedule Consultation
+                  Contact
                 </div>
               </div>
             </motion.div>

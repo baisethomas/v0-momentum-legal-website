@@ -149,7 +149,7 @@ export default function AboutPage() {
                 <button onClick={() => scrollToSection('about')} className="block w-full text-left text-sm font-medium text-white">About</button>
                 <button onClick={() => window.location.href = '/services'} className="block w-full text-left text-sm font-normal text-gray-300 hover:text-white">Services</button>
                 <button onClick={() => window.location.href = '/contact'} className="w-full mt-4 px-6 py-2.5 text-sm font-medium bg-white text-black">
-                  Schedule Consultation
+                  Contact
                 </button>
               </div>
             </motion.div>
