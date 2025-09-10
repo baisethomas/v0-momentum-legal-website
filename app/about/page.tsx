@@ -4,10 +4,11 @@ import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { ArrowRight, Menu, X, Phone, Mail, Linkedin, Scale, Award, Building, Briefcase } from "lucide-react"
+import { ArrowRight, Phone, Mail, Linkedin, Scale, Award, Building, Briefcase } from "lucide-react"
+import { Navigation } from "@/components/Navigation"
+import { fadeUp, stagger } from "@/lib/motion"
 
 export default function AboutPage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
   const [scrollY, setScrollY] = useState(0)
 
@@ -43,131 +44,12 @@ export default function AboutPage() {
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' })
     }
-    setIsMenuOpen(false)
   }
 
-  const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } }
-  }
-
-  const stagger = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
-  }
 
   return (
     <div className="min-h-full bg-gray-50 text-gray-900 font-inter">
-      {/* Navigation */}
-      <motion.nav 
-        className="fixed top-0 w-full backdrop-blur-sm border-b z-50 bg-black/95 border-gray-800"
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
-          <div className="flex h-20 items-center justify-between">
-            {/* Brand */}
-            <motion.div 
-              className="flex gap-3 items-center"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => window.location.href = '/'}
-              style={{ cursor: 'pointer' }}
-            >
-              <img 
-                src="/1x/logo.png" 
-                alt="Momentum Legal" 
-                className="h-10 w-auto filter invert"
-              />
-              <div className="flex flex-col leading-tight">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl font-poppins font-semibold tracking-tight text-white uppercase">
-                    <span className="text-2xl">M</span>OMENTUM <span className="text-2xl">L</span>EGAL
-                  </span>
-                </div>
-                <span className="text-xs font-poppins font-normal tracking-wide text-gray-300 uppercase">
-                  a Professional Corporation
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
-              <button 
-                onClick={() => scrollToSection('home')}
-                className="text-sm font-normal transition-colors text-gray-300 hover:text-white"
-              >
-                Home
-              </button>
-              <button 
-                onClick={() => scrollToSection('about')}
-                className="text-sm font-normal transition-colors text-white font-medium"
-              >
-                About
-              </button>
-              <button 
-                onClick={() => window.location.href = '/services'}
-                className="text-sm font-normal transition-colors text-gray-300 hover:text-white"
-              >
-                Services
-              </button>
-              <div className="h-5 w-px bg-gray-600"></div>
-              <a href="https://www.linkedin.com/company/momentum-legal" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="https://twitter.com/momentumlegal" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="X">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-              </a>
-              <motion.button 
-                onClick={() => window.location.href = '/contact'}
-                className="px-6 py-2.5 text-sm font-medium transition-colors bg-white hover:bg-gray-100 text-black"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Schedule Consultation
-              </motion.button>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="lg:hidden">
-              <button 
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 text-white"
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <motion.div 
-              className="lg:hidden border-t border-gray-700 py-4"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div 
-                className="space-y-4"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.3, ease: "easeOut" }}
-              >
-                <button onClick={() => scrollToSection('home')} className="block w-full text-left text-sm font-normal text-gray-300 hover:text-white">Home</button>
-                <button onClick={() => scrollToSection('about')} className="block w-full text-left text-sm font-medium text-white">About</button>
-                <button onClick={() => window.location.href = '/services'} className="block w-full text-left text-sm font-normal text-gray-300 hover:text-white">Services</button>
-                <button onClick={() => window.location.href = '/contact'} className="w-full mt-4 px-6 py-2.5 text-sm font-medium bg-white text-black">
-                  Schedule Consultation
-                </button>
-              </motion.div>
-            </motion.div>
-          )}
-        </div>
-      </motion.nav>
+      <Navigation currentPage="about" />
 
       {/* Hero Section */}
       <section className="relative pt-20 min-h-screen flex items-center">
@@ -262,9 +144,9 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div>
+              <div id="meet-the-founder">
                 <h2 className="text-3xl lg:text-4xl font-light tracking-tight mb-6 text-gray-900">
-                  Meet
+                  Meet the Founder
                   <br />
                   <span className="font-medium">Wilson Hall</span>
                 </h2>
@@ -493,10 +375,10 @@ export default function AboutPage() {
             <div>
               <h4 className="text-sm font-medium mb-4 tracking-wide">NAVIGATION</h4>
               <div className="space-y-3 text-sm font-light text-gray-400">
-                <button onClick={() => scrollToSection('home')} className="block transition-colors hover:text-white">Home</button>
-                <button onClick={() => scrollToSection('about')} className="block transition-colors text-white">About</button>
-                <button onClick={() => window.location.href = '/services'} className="block transition-colors hover:text-white">Services</button>
-                <button onClick={() => scrollToSection('contact')} className="block transition-colors hover:text-white">Contact</button>
+                <a href="/" className="block transition-colors hover:text-white">Home</a>
+                <a href="/about" className="block transition-colors text-white">About</a>
+                <a href="/services" className="block transition-colors hover:text-white">Services</a>
+                <a href="/contact" className="block transition-colors hover:text-white">Contact</a>
               </div>
             </div>
             

@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Menu, X, Phone, Mail, Linkedin, MapPin } from "lucide-react"
+import { ArrowRight, Phone, Mail, Linkedin, MapPin } from "lucide-react"
+import { Navigation } from "@/components/Navigation"
+import { fadeUp, stagger } from "@/lib/motion"
 
 export default function MomentumLegalV2() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
@@ -18,144 +19,35 @@ export default function MomentumLegalV2() {
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' })
     }
-    setIsMenuOpen(false)
-  }
-
-  const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  }
-
-  const stagger = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
   }
 
   return (
     <div className="min-h-full bg-gray-50 text-gray-900 font-inter">
-      {/* Navigation */}
-      <motion.nav 
-        className="fixed top-0 w-full backdrop-blur-sm border-b z-50 bg-black/95 border-gray-800"
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
-          <div className="flex h-20 items-center justify-between">
-            {/* Brand */}
-            <motion.div 
-              className="flex gap-3 items-center"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-            >
-              <img 
-                src="/1x/logo.png" 
-                alt="Momentum Legal" 
-                className="h-10 w-auto filter invert"
-              />
-              <div className="flex flex-col leading-tight">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl font-poppins font-semibold tracking-tight text-white uppercase">
-                    <span className="text-2xl">M</span>OMENTUM <span className="text-2xl">L</span>EGAL
-                  </span>
-                </div>
-                <span className="text-xs font-poppins font-normal tracking-wide text-gray-300 uppercase">
-                  a Professional Corporation
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
-              <button 
-                onClick={() => scrollToSection('home')}
-                className="text-sm font-normal transition-colors text-gray-300 hover:text-white"
-              >
-                Home
-              </button>
-              <button 
-                onClick={() => window.location.href = '/about'}
-                className="text-sm font-normal transition-colors text-gray-300 hover:text-white"
-              >
-                About
-              </button>
-              <button 
-                onClick={() => window.location.href = '/services'}
-                className="text-sm font-normal transition-colors text-gray-300 hover:text-white"
-              >
-                Services
-              </button>
-              <div className="h-5 w-px bg-gray-600"></div>
-              <a href="https://www.linkedin.com/company/momentum-legal" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="https://twitter.com/momentumlegal" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="X">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-              </a>
-              <motion.button 
-                onClick={() => window.location.href = '/contact'}
-                className="px-6 py-2.5 text-sm font-medium transition-colors bg-white hover:bg-gray-100 text-black"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Schedule Consultation
-              </motion.button>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="lg:hidden">
-              <button 
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 text-white"
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <motion.div 
-              className="lg:hidden border-t border-gray-700 py-4"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div 
-                className="space-y-4"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.3, ease: "easeOut" }}
-              >
-                <button onClick={() => scrollToSection('home')} className="block w-full text-left text-sm font-normal text-gray-300 hover:text-white">Home</button>
-                <button onClick={() => window.location.href = '/about'} className="block w-full text-left text-sm font-normal text-gray-300 hover:text-white">About</button>
-                <button onClick={() => window.location.href = '/services'} className="block w-full text-left text-sm font-normal text-gray-300 hover:text-white">Services</button>
-                <button onClick={() => window.location.href = '/contact'} className="w-full mt-4 px-6 py-2.5 text-sm font-medium bg-white text-black">
-                  Schedule Consultation
-                </button>
-              </motion.div>
-            </motion.div>
-          )}
-        </div>
-      </motion.nav>
+      <Navigation currentPage="home" />
 
       {/* Hero Section */}
-      <section id="home" className="pt-20">
-        <div className="max-w-screen-2xl lg:p-12 mx-auto pt-6 px-6 pb-6">
+      <section id="home" className="pt-20 relative min-h-screen">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/hero-image.png')"
+          }}
+        >
+        </div>
+        
+        <div className="max-w-screen-2xl lg:p-12 mx-auto pt-6 px-6 pb-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 min-h-screen">
             {/* Left Column - Text */}
             <motion.div 
-              className="lg:col-span-5 flex flex-col justify-center"
+              className="lg:col-span-5 flex flex-col justify-center text-black"
               variants={stagger}
               initial="hidden"
               animate={isLoaded ? "show" : "hidden"}
             >
               <div className="space-y-8">
                 <motion.div 
-                  className="inline-flex gap-2 w-fit text-xs font-medium text-gray-700 bg-gray-100 pt-2 pr-4 pb-2 pl-4 items-center"
+                  className="inline-flex gap-2 w-fit text-xs font-medium text-black bg-white/80 backdrop-blur-sm pt-2 pr-4 pb-2 pl-4 items-center"
                   variants={fadeUp}
                 >
                   <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
@@ -164,26 +56,26 @@ export default function MomentumLegalV2() {
 
                 <div className="space-y-6">
                   <motion.h1 
-                    className="lg:text-7xl leading-none text-5xl font-light text-gray-900 tracking-tight"
+                    className="lg:text-7xl leading-none text-5xl font-light text-black tracking-tight"
                     variants={fadeUp}
                   >
                     Momentum<br />
                     <span className="font-medium">Legal</span><br />
-                    <span className="text-gray-400">the Power Behind Your Next Move</span>
+                    <span className="text-gray-600">the Power Behind Your Next Deal</span>
                   </motion.h1>
 
                   <motion.p 
-                    className="text-lg lg:text-xl font-light leading-relaxed max-w-lg text-gray-600"
+                    className="text-lg lg:text-xl font-light leading-relaxed max-w-lg text-gray-700"
                     variants={fadeUp}
                   >
-                    Business, NIL, and institutional counsel built for speed, precision, and clarity.
+                    Corporate, NIL, and institutional counsel built for speed, precision, and clarity.
                   </motion.p>
 
                   <motion.p 
                     className="text-sm lg:text-base font-light leading-relaxed max-w-lg text-gray-600"
                     variants={fadeUp}
                   >
-                    We partner with founders, athletes, brands, collectives, and universities to structure deals, protect IP, and navigate evolving regulations with practical, outcome‑focused advice.
+                    We partner with founders and investors, athletes, brands, collectives, and universities to structure deals, protect IP, and navigate evolving regulations with practical, outcome‑focused advice.
                   </motion.p>
                 </div>
 
@@ -202,7 +94,7 @@ export default function MomentumLegalV2() {
                   </motion.button>
                   <motion.button 
                     onClick={() => scrollToSection('services')}
-                    className="border px-8 py-4 text-sm font-medium transition-colors border-gray-300 hover:border-black text-gray-900"
+                    className="border px-8 py-4 text-sm font-medium transition-colors border-gray-300 hover:border-black text-black bg-white/80 backdrop-blur-sm hover:bg-white"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -211,7 +103,7 @@ export default function MomentumLegalV2() {
                 </motion.div>
 
                 <motion.div 
-                  className="text-sm text-gray-700"
+                  className="text-sm text-gray-600"
                   variants={fadeUp}
                 >
                   Move quickly. Get it right the first time.
@@ -219,86 +111,6 @@ export default function MomentumLegalV2() {
               </div>
             </motion.div>
 
-            {/* Right Column - Showcase Grid */}
-            <motion.div 
-              className="lg:col-span-7"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <div className="grid grid-cols-2 gap-4 lg:gap-6 h-full">
-                {/* Large Featured */}
-                <motion.div 
-                  className="col-span-2 row-span-2 group cursor-pointer"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="relative h-80 lg:h-96 overflow-hidden bg-gray-900">
-                    <img 
-                      src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                      alt="Deal Room" 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 group-hover:bg-black/10 transition-colors duration-300 bg-black/20"></div>
-                    <div className="absolute top-6 left-6">
-                      <span className="px-3 py-1 text-xs font-medium bg-white text-black">FEATURED</span>
-                    </div>
-                    <div className="absolute bottom-6 left-6 text-white">
-                      <div className="text-2xl font-light mb-1">Corporate & Venture</div>
-                      <div className="text-sm opacity-90">Formation, Financing, M&A</div>
-                      <div className="text-xs opacity-75 flex items-center gap-1 mt-1">
-                        <MapPin className="w-3.5 h-3.5" />
-                        California • Nationwide
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Small Cards */}
-                {[
-                  {
-                    image: "https://images.unsplash.com/photo-1621619856624-42fd193a0661?w=1080&q=80",
-                    title: "NIL & Athletes",
-                    subtitle: "Contracts, Brand, Compliance"
-                  },
-                  {
-                    image: "https://images.unsplash.com/photo-1642615835477-d303d7dc9ee9?w=1080&q=80",
-                    title: "NIL Collectives",
-                    subtitle: "Governance & Compliance"
-                  },
-                  {
-                    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
-                    title: "Universities",
-                    subtitle: "Policy & Training"
-                  },
-                  {
-                    image: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80",
-                    title: "Brands & Sponsors",
-                    subtitle: "Deals & Compliance"
-                  }
-                ].map((card, index) => (
-                  <motion.div 
-                    key={index}
-                    className="group cursor-pointer"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="relative h-32 lg:h-40 overflow-hidden bg-gray-900">
-                      <img 
-                        src={card.image} 
-                        alt={card.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 group-hover:bg-black/20 transition-colors duration-300 bg-black/30"></div>
-                      <div className="absolute bottom-3 left-3 text-white">
-                        <div className="text-sm font-light">{card.title}</div>
-                        <div className="text-xs opacity-90">{card.subtitle}</div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
           </div>  
         </div>
       </section>
@@ -361,9 +173,10 @@ export default function MomentumLegalV2() {
                     anchor: "brand-sponsor"
                   }
                 ].slice(0, 4).map((service, index) => (
-                  <motion.div 
+                  <motion.a 
                     key={index}
-                    className={`group relative overflow-hidden ring-1 ${service.ring} text-white ${service.gradient} rounded-2xl p-5 transition-all duration-300 cursor-pointer hover:shadow-xl`}
+                    href={`/services#${service.anchor}`}
+                    className={`group relative overflow-hidden ring-1 ${service.ring} text-white ${service.gradient} rounded-2xl p-5 transition-all duration-300 cursor-pointer hover:shadow-xl block`}
                     whileHover={{ y: -4, scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -375,19 +188,15 @@ export default function MomentumLegalV2() {
                     />
                     <div className="relative flex flex-col h-full justify-between">
                       <h3 className="text-2xl font-semibold mb-6 text-white leading-tight">{service.title}</h3>
-                      <a 
-                        href={`/services#${service.anchor}`}
-                        className="relative mt-8 h-9 w-9 rounded-full bg-white text-neutral-900 flex items-center justify-center shadow-sm transition-colors hover:text-gray-700 group-hover:scale-110"
-                      >
-                        <ArrowRight className="h-4 w-4" />
-                      </a>
+                      <div className="mt-8"></div>
                     </div>
-                  </motion.div>
+                  </motion.a>
                 ))}
 
                 {/* University & Institutional Counsel */}
-                <motion.div 
-                  className="group relative overflow-hidden ring-1 ring-neutral-400/30 text-white bg-gradient-to-tr from-neutral-800 to-neutral-600 rounded-2xl p-5 transition-all duration-300 cursor-pointer hover:shadow-xl"
+                <motion.a 
+                  href="/services#university-institutional"
+                  className="group relative overflow-hidden ring-1 ring-neutral-400/30 text-white bg-gradient-to-tr from-neutral-800 to-neutral-600 rounded-2xl p-5 transition-all duration-300 cursor-pointer hover:shadow-xl block"
                   whileHover={{ y: -4, scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -399,14 +208,9 @@ export default function MomentumLegalV2() {
                   />
                   <div className="relative flex flex-col h-full justify-between">
                     <h3 className="text-2xl font-semibold mb-6 text-white leading-tight">University & Institutional Counsel</h3>
-                    <a 
-                      href="/services#university-institutional" 
-                      className="relative mt-8 h-9 w-9 rounded-full bg-white text-neutral-900 flex items-center justify-center shadow-sm transition-colors hover:text-gray-700 group-hover:scale-110"
-                    >
-                      <ArrowRight className="h-4 w-4" />
-                    </a>
+                    <div className="mt-8"></div>
                   </div>
-                </motion.div>
+                </motion.a>
               </div>
             </motion.div>
           </div>      
@@ -429,9 +233,15 @@ export default function MomentumLegalV2() {
                 <br />
                 <span className="font-medium">Momentum Legal</span>
               </h2>
-              <p className="text-lg font-light leading-relaxed text-gray-600">
+              <p className="text-lg font-light leading-relaxed text-gray-600 mb-8">
                 We deliver modern corporate and NIL counsel to founders, athletes, brands, collectives, and institutions—clear advice, fast execution, and durable outcomes.
               </p>
+              <button 
+                onClick={() => window.location.href = '/about'}
+                className="h-10 w-10 rounded-full bg-gray-900 text-white flex items-center justify-center shadow-sm transition-all hover:scale-110 hover:bg-black group self-start"
+              >
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+              </button>
             </motion.div>
             <motion.div 
               className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8"
@@ -442,18 +252,15 @@ export default function MomentumLegalV2() {
             >
               <div className="p-8 border border-gray-100 bg-white">
                 <h3 className="text-base font-medium mb-3 text-gray-900">About the Founder — Wilson Hall</h3>
-                <p className="text-sm font-light leading-relaxed text-gray-600">
+                <p className="text-sm font-light leading-relaxed text-gray-600 mb-6">
                   Wilson advises across corporate transactions, NIL matters, and institutional policy, blending practical deal‑making with thoughtful compliance and risk management.
                 </p>
-              </div>
-              <div className="p-8 border border-gray-100 bg-white">
-                <h3 className="text-base font-medium mb-3 text-gray-900">Credentials</h3>
-                <ul className="text-sm font-light leading-relaxed text-gray-600 space-y-2">
-                  <li><span className="font-normal text-gray-800">Juris Doctor —</span> Santa Clara University School of Law, 2022</li>
-                  <li><span className="font-normal text-gray-800">High Tech Law Certificate —</span> IP Specialization with Honors</li>
-                  <li><span className="font-normal text-gray-800">Bachelor of Arts —</span> Sonoma State University, 2019 (Criminology and Criminal Justice Studies)</li>
-                  <li><span className="font-normal text-gray-800">Bar Admissions —</span> California</li>
-                </ul>
+                <button 
+                  onClick={() => window.location.href = '/about#meet-the-founder'}
+                  className="h-10 w-10 rounded-full bg-gray-900 text-white flex items-center justify-center shadow-sm transition-all hover:scale-110 hover:bg-black group"
+                >
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                </button>
               </div>
             </motion.div>
           </div>
@@ -614,10 +421,10 @@ export default function MomentumLegalV2() {
             <div>
               <h4 className="text-sm font-medium mb-4 tracking-wide">NAVIGATION</h4>
               <div className="space-y-3 text-sm font-light text-gray-400">
-                <button onClick={() => scrollToSection('home')} className="block transition-colors hover:text-white">Home</button>
-                <button onClick={() => scrollToSection('about')} className="block transition-colors hover:text-white">About</button>
-                <button onClick={() => scrollToSection('services')} className="block transition-colors hover:text-white">Services</button>
-                <button onClick={() => scrollToSection('contact')} className="block transition-colors hover:text-white">Contact</button>
+                <a href="/" className="block transition-colors hover:text-white">Home</a>
+                <a href="/about" className="block transition-colors hover:text-white">About</a>
+                <a href="/services" className="block transition-colors hover:text-white">Services</a>
+                <a href="/contact" className="block transition-colors hover:text-white">Contact</a>
               </div>
             </div>
             
