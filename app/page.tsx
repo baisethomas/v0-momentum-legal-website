@@ -367,7 +367,7 @@ export default function MomentumLegalV2() {
                 ].slice(0, 4).map((service, index) => (
                   <motion.div 
                     key={index}
-                    className={`group p-8 border transition-colors cursor-pointer border-gray-100 hover:border-gray-200 ${index === 3 ? 'sm:col-span-2' : ''}`}
+                    className="group p-8 border transition-colors cursor-pointer border-gray-100 hover:border-gray-200"
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.3 }}
                   >
