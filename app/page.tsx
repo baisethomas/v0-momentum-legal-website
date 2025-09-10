@@ -118,19 +118,21 @@ export default function MomentumLegalHomepage() {
   const services = [
     {
       icon: <Scale className="h-8 w-8" />,
-      title: "NIL Representation",
-      description:
-        "Comprehensive NIL guidance for athletes, from contract negotiation to compliance with NCAA regulations and state laws.",
+      title: "NIL & Athlete Representation",
+      description: "Comprehensive NIL guidance for athletes, from contract negotiation to compliance with NCAA regulations and state laws.",
+      link: "/services/nil-athlete"
     },
     {
       icon: <Trophy className="h-8 w-8" />,
-      title: "Business Transactions",
-      description: "Complex deal-making services for collectives, universities, entrepreneurs, and investors in the sports ecosystem.",
+      title: "Corporate & Venture Transactions",
+      description: "Complex deal-making services for VC funds, startups, growth companies, and investors in the sports ecosystem.",
+      link: "/services/corporate-venture"
     },
     {
       icon: <Users className="h-8 w-8" />,
-      title: "Strategic Partnerships",
-      description: "We're not just attorneys — we're partners in creating lasting growth through innovative legal solutions.",
+      title: "Collective Representation",
+      description: "Legal support for NIL collectives, donor groups, and alumni-backed organizations navigating the evolving landscape.",
+      link: "/services/collective"
     },
   ]
 
@@ -208,31 +210,83 @@ export default function MomentumLegalHomepage() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:block">
-              <motion.div 
-                className="ml-10 flex items-baseline space-x-8"
-                variants={isMobile ? mobileStagger : staggerFast}
-                initial="hidden"
-                animate={isLoaded ? "show" : "hidden"}
-              >
-                {["Services", "About", "Testimonials", "Contact"].map((item, i) => (
-                  <motion.a 
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    className="text-white hover:text-gray-300 transition-all duration-300 relative group"
+                <motion.div 
+                  className="ml-10 flex items-baseline space-x-8"
+                  variants={isMobile ? mobileStagger : staggerFast}
+                  initial="hidden"
+                  animate={isLoaded ? "show" : "hidden"}
+                >
+                  {/* Services Dropdown */}
+                  <motion.div 
+                    className="relative group"
                     variants={isMobile ? mobileSlideIn : fadeUp}
                     whileHover={!isMobile ? { y: -2 } : undefined}
                     whileTap={isMobile ? { scale: 0.95 } : undefined}
-                    data-cursor-text={!isMobile ? item : undefined}
+                    data-cursor-text={!isMobile ? "Services" : undefined}
                   >
-                    {item}
+                    <a 
+                      href="#services"
+                      className="text-white hover:text-gray-300 transition-all duration-300 relative group"
+                    >
+                  Services
+                      <motion.div 
+                        className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white origin-left"
+                        whileHover={{ width: "100%" }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </a>
+                    
+                    {/* Services Dropdown Menu */}
                     <motion.div 
-                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white origin-left"
-                      whileHover={{ width: "100%" }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </motion.a>
-                ))}
-              </motion.div>
+                      className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50"
+                      initial={{ y: -10, opacity: 0 }}
+                      whileHover={{ y: 0, opacity: 1 }}
+                    >
+                      <div className="py-2">
+                        <a href="/services/corporate-venture" className="block px-4 py-3 text-gray-800 hover:bg-gray-100 transition-colors">
+                          <div className="font-semibold">Corporate & Venture</div>
+                          <div className="text-sm text-gray-600">VC funds, startups, growth companies</div>
+                        </a>
+                        <a href="/services/nil-athlete" className="block px-4 py-3 text-gray-800 hover:bg-gray-100 transition-colors">
+                          <div className="font-semibold">NIL & Athlete Representation</div>
+                          <div className="text-sm text-gray-600">Student-athletes, professional athletes</div>
+                        </a>
+                        <a href="/services/collective" className="block px-4 py-3 text-gray-800 hover:bg-gray-100 transition-colors">
+                          <div className="font-semibold">Collective Representation</div>
+                          <div className="text-sm text-gray-600">NIL collectives, donor groups</div>
+                        </a>
+                        <a href="/services/brand-sponsor" className="block px-4 py-3 text-gray-800 hover:bg-gray-100 transition-colors">
+                          <div className="font-semibold">Brand & Sponsor Advisory</div>
+                          <div className="text-sm text-gray-600">Consumer brands, agencies</div>
+                        </a>
+                        <a href="/services/university-institutional" className="block px-4 py-3 text-gray-800 hover:bg-gray-100 transition-colors">
+                          <div className="font-semibold">University & Institutional</div>
+                          <div className="text-sm text-gray-600">Division I universities, compliance</div>
+                        </a>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+
+                  {/* Other Navigation Items */}
+                  {["About", "Testimonials", "Contact"].map((item, i) => (
+                    <motion.a 
+                      key={item}
+                      href={item === "About" ? "/about" : `#${item.toLowerCase()}`}
+                      className="text-white hover:text-gray-300 transition-all duration-300 relative group"
+                      variants={isMobile ? mobileSlideIn : fadeUp}
+                      whileHover={!isMobile ? { y: -2 } : undefined}
+                      whileTap={isMobile ? { scale: 0.95 } : undefined}
+                      data-cursor-text={!isMobile ? item : undefined}
+                    >
+                      {item}
+                      <motion.div 
+                        className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white origin-left"
+                        whileHover={{ width: "100%" }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </motion.a>
+                  ))}
+                </motion.div>
             </div>
 
             {/* Mobile menu button */}
@@ -248,9 +302,9 @@ export default function MomentumLegalHomepage() {
                     animate={{ rotate: isMenuOpen ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                   </motion.div>
-                </Button>
+              </Button>
               </motion.div>
             </div>
           </div>
@@ -269,10 +323,33 @@ export default function MomentumLegalHomepage() {
             initial="hidden"
             animate={isMenuOpen ? "show" : "hidden"}
           >
-            {["Services", "About", "Testimonials", "Contact"].map((item) => (
+            {/* Services Section */}
+            <motion.div variants={slideReveal}>
+              <div className="px-3 py-2 text-white font-semibold">Services</div>
+              <div className="pl-6 space-y-1">
+                <a href="/services/corporate-venture" className="block px-3 py-2 text-gray-300 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>
+                  Corporate & Venture
+                </a>
+                <a href="/services/nil-athlete" className="block px-3 py-2 text-gray-300 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>
+                  NIL & Athlete Representation
+                </a>
+                <a href="/services/collective" className="block px-3 py-2 text-gray-300 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>
+                  Collective Representation
+                </a>
+                <a href="/services/brand-sponsor" className="block px-3 py-2 text-gray-300 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>
+                  Brand & Sponsor Advisory
+                </a>
+                <a href="/services/university-institutional" className="block px-3 py-2 text-gray-300 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>
+                  University & Institutional
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Other Navigation Items */}
+            {["About", "Testimonials", "Contact"].map((item) => (
               <motion.a 
                 key={item}
-                href={`#${item.toLowerCase()}`}
+                href={item === "About" ? "/about" : `#${item.toLowerCase()}`}
                 className="block px-3 py-2 text-white hover:text-gray-300 transition-all duration-300 hover:translate-x-2"
                 variants={slideReveal}
                 onClick={() => setIsMenuOpen(false)}
@@ -334,7 +411,7 @@ export default function MomentumLegalHomepage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
-              Driving deals forward
+              The Power Behind Your Next Move
             </motion.span>
           </motion.h1>
           
@@ -345,7 +422,11 @@ export default function MomentumLegalHomepage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0, duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            A boutique law firm built to move business forward. We operate at the intersection of sports, business, and innovation — representing athletes, collectives, universities, entrepreneurs, and investors.
+            At the intersection of sports, business, and innovation, Momentum Legal is more than a law firm. We are your strategic partners, dedicated to driving your vision forward.
+
+We represent a new generation of leaders: athletes, entrepreneurs, investors, and the brands that shape our culture. In a world of fast-moving opportunities, we provide the clarity and confidence you need to seize every advantage. From high-stakes NIL deals to complex business transactions, we are the force that ensures your success is not just momentary, but monumental.
+
+We're not just closing deals; we're building legacies.
           </motion.p>
           
           <motion.div 
@@ -369,12 +450,12 @@ export default function MomentumLegalHomepage() {
                 initial={!isMobile ? magneticHover.rest : mobileButtonPress.rest}
                 ref={isMobile ? ctaRipple.ref : undefined}
               >
-                <Button
-                  size="lg"
+            <Button
+              size="lg"
                   className="bg-black hover:bg-gray-800 text-white border-0 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold shadow-2xl transition-all duration-300 relative overflow-hidden"
                   data-cursor-text={!isMobile ? "Schedule" : undefined}
-                >
-                  Schedule Free Consultation
+            >
+              Schedule Free Consultation
                   <motion.div
                     whileHover={!isMobile ? { x: 4 } : undefined}
                     transition={{ duration: 0.2 }}
@@ -382,7 +463,7 @@ export default function MomentumLegalHomepage() {
                     <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6" />
                   </motion.div>
                   {isMobile && <TouchRipple ripples={ctaRipple.ripples} />}
-                </Button>
+            </Button>
               </motion.div>
             </motion.div>
             
@@ -395,14 +476,14 @@ export default function MomentumLegalHomepage() {
                 } : undefined}
                 whileTap={isMobile ? { scale: 0.96 } : { scale: 0.95 }}
               >
-                <Button
-                  size="lg"
-                  variant="outline"
+            <Button
+              size="lg"
+              variant="outline"
                   className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-md px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg bg-transparent shadow-2xl transition-all duration-300"
                   data-cursor-text={!isMobile ? "Learn More" : undefined}
-                >
-                  Our Expertise
-                </Button>
+            >
+              Our Expertise
+            </Button>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -590,7 +671,7 @@ export default function MomentumLegalHomepage() {
                 <motion.article 
                   key={index} 
                   variants={isMobile ? mobileCardHover : cardHover}
-                  className="group relative overflow-hidden p-6 sm:p-8 border-2 rounded-2xl sm:rounded-3xl backdrop-blur-sm transition-all duration-500"
+                  className="group relative overflow-hidden p-6 sm:p-8 border-2 rounded-2xl sm:rounded-3xl backdrop-blur-sm transition-all duration-500 cursor-pointer"
                   style={{
                     backgroundColor: `rgb(var(--${colors.bg}))`,
                     borderColor: `rgb(var(--${colors.border}))`
@@ -602,6 +683,7 @@ export default function MomentumLegalHomepage() {
                   } : undefined}
                   whileTap={isMobile ? mobileCardHover.tap : undefined}
                   data-cursor-text={!isMobile ? service.title : undefined}
+                  onClick={() => window.location.href = service.link}
                 >
                   {/* Animated background gradient */}
                   <motion.div
@@ -634,7 +716,7 @@ export default function MomentumLegalHomepage() {
                             className={`${colors.icon} transition-all duration-300`}
                             whileHover={!isMobile ? { scale: 1.2 } : undefined}
                           >
-                            {service.icon}
+                    {service.icon}
                           </motion.div>
                         </motion.div>
                         
@@ -739,7 +821,7 @@ export default function MomentumLegalHomepage() {
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.6 }}
                   >
-                    <Scale className="h-32 w-32 text-black mx-auto mb-6" />
+                  <Scale className="h-32 w-32 text-black mx-auto mb-6" />
                   </motion.div>
                   <p className="font-playfair text-3xl font-bold text-black">Justice in Motion</p>
                 </div>
@@ -802,7 +884,7 @@ export default function MomentumLegalHomepage() {
                           className="flex"
                           variants={stagger}
                         >
-                          {[...Array(testimonial.rating)].map((_, i) => (
+                    {[...Array(testimonial.rating)].map((_, i) => (
                             <motion.div
                               key={i}
                               variants={scaleIn}
@@ -878,10 +960,11 @@ export default function MomentumLegalHomepage() {
             <div>
               <h4 className="font-semibold text-gray-800 mb-4">Services</h4>
               <ul className="space-y-2 text-gray-600">
-                <li>NIL Representation</li>
-                <li>Business Transactions</li>
-                <li>Strategic Partnerships</li>
-                <li>Compliance & Deal-Making</li>
+                <li><a href="/services/corporate-venture" className="hover:text-black transition-colors">Corporate & Venture</a></li>
+                <li><a href="/services/nil-athlete" className="hover:text-black transition-colors">NIL & Athlete Representation</a></li>
+                <li><a href="/services/collective" className="hover:text-black transition-colors">Collective Representation</a></li>
+                <li><a href="/services/brand-sponsor" className="hover:text-black transition-colors">Brand & Sponsor Advisory</a></li>
+                <li><a href="/services/university-institutional" className="hover:text-black transition-colors">University & Institutional</a></li>
               </ul>
             </div>
 
