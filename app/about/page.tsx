@@ -179,17 +179,24 @@ export default function AboutPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              {/* Visual Element */}
+              {/* Founder Headshot */}
               <div className="bg-white p-8 border border-gray-100 text-center">
                 <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
                   className="mb-6"
                 >
-                  <Scale className="h-20 w-20 text-black mx-auto" />
+                  <Image
+                    src="/Hall Wilson.jpg"
+                    alt="Wilson Hall, Founder of Momentum Legal"
+                    width={280}
+                    height={280}
+                    className="w-64 h-64 object-cover rounded-full mx-auto border-4 border-gray-100"
+                    priority
+                  />
                 </motion.div>
-                <h3 className="text-xl font-medium mb-2 text-gray-900">Excellence in Law</h3>
-                <p className="text-sm text-gray-600">Built on Initiative, Innovation & Integrity</p>
+                <h3 className="text-xl font-medium mb-2 text-gray-900">Wilson Hall</h3>
+                <p className="text-sm text-gray-600">Founder & Principal Attorney</p>
               </div>
 
               {/* Core Values */}
