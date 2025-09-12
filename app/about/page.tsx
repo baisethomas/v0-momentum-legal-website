@@ -166,7 +166,11 @@ export default function AboutPage() {
                 </p>
                 
                 <p>
-                  Momentum Legal embodies Wilson's core values: initiative, innovation, and integrity. This firm was built for clients who are ready to take charge, pursue ambitious goals, and partner with a lawyer who not only masters the law, but deeply understands the fast-paced business realities of today's competitive markets.
+                  Momentum Legal embodies Wilson's core values: initiative, innovation, and integrity. This firm was built for clients who are ready to take charge, pursue ambitious goals, and partner with a lawyer who not only commands the law, but deeply understands the fast-paced business realities of today's competitive markets.
+                </p>
+
+                <p>
+                Prior to founding Momentum Legal, Wilson was an associate at two global and AmLaw 100 law firms.
                 </p>
               </div>
             </motion.div>
@@ -267,14 +271,14 @@ export default function AboutPage() {
                 {
                   category: "Bar Admissions",
                   items: [
-                    { label: "California", detail: "State Bar of California" }
+                    { label: "California"}
                   ]
                 },
                 {
                   category: "Specializations",
                   items: [
-                    { label: "Corporate Transactions", detail: "VC funds, startups, M&A" },
-                    { label: "NIL & Sports Law", detail: "Athletes, collectives, compliance" }
+                    { label: "Corporate Transactions", detail: "General corporate, VC funds, startups, M&A" },
+                    { label: "NIL & Sports Law", detail: "Athletes, brands, collectives, compliance" }
                   ]
                 }
               ].map((section, index) => (

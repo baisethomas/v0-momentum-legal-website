@@ -63,22 +63,22 @@ export default function ServicesPage() {
         "Entity Formation and Structuring: LLCs, C‑Corps, partnerships, governance documents.",
         "Venture Financings: Represent VC funds and startups in debt and equity financings.",
         "Mergers & Acquisitions: Buy‑side and sell‑side legal counsel for acquisitions, joint ventures, asset sales.",
-        "Commercial Contracts: Licensing agreements, distribution deals, service agreements.",
+        "Commercial Contracts: Licensing agreements, enterprise customer agreements, service agreements.",
         "Employment & Equity Matters: Executive contracts, stock options, ESOP plans.",
         "Compliance & Risk Advisory: Regulatory strategy, securities compliance, risk mitigation."
       ]
     },
     {
-      title: "NIL & Athlete Representation",
-      description: "For student‑athletes, we are more than just legal counsel; we are your strategic partners. We safeguard your eligibility while building your brand, providing practical NIL guidance, expert contract negotiation, and robust business structuring. Maximize today's opportunities and confidently prepare for a lasting career.",
+      title: "Name, Image, and Likeness (NIL) & Student-Athlete Representation",
+      description: "For student‑athletes, we are more than just legal counsel; we are your strategic legal muscle. We safeguard your eligibility while building your brand, providing practical NIL guidance, future-proof contract negotiation, and robust business structuring. Maximize today's opportunities and confidently prepare for a lasting career.",
       image: "https://images.unsplash.com/photo-1475116730596-402cbd4ff6c1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       alt: "Sports and Athletes",
       icon: <Trophy className="h-8 w-8" />,
       id: "nil-athlete",
       services: [
-        "NIL Contract Review & Negotiation: Endorsements, sponsorships, appearances, social media deals.",
+        "NIL Contract Drafting & Negotiation: Endorsements, sponsorships, appearances, social media deals.",
         "Brand & IP Protection: Trademark filings, publicity rights, licensing deals.",
-        "Business Formation for Athletes: LLC or S‑corps for NIL income management.",
+        "Business Formation for Student-Athletes: LLC or S‑corps for NIL income management.",
         "Tax & Compliance Guidance: 1099 vs W‑2 considerations, NCAA/CSC compliance alignment.",
         "Long‑Term Planning: Transitioning from college NIL to professional contracts, equity stakes, and royalties."
       ]
@@ -100,7 +100,7 @@ export default function ServicesPage() {
     },
     {
       title: "Brand & Sponsor Advisory",
-      description: "Brands partnering with athletes face distinct legal and regulatory complexities. We empower sponsors and agencies to structure impactful deals, protect intellectual property, and expertly navigate NIL and advertising regulations, ensuring effective and fully compliant campaigns.",
+      description: "Brands partnering with athletes face distinct legal and regulatory complexities. We empower sponsors and agencies to structure impactful deals, protect their brands, and expertly navigate NIL and advertising regulations, ensuring effective and fully compliant campaigns.",
       image: "/Brands Image.jpg",
       alt: "Stack of branded sportswear t-shirts (Reebok, Adidas, Nike, Champion)",
       icon: <Briefcase className="h-8 w-8" />,
@@ -184,7 +184,7 @@ export default function ServicesPage() {
                   className="text-lg lg:text-xl font-light leading-relaxed max-w-3xl text-gray-200"
                   variants={fadeUp}
                 >
-                  At Momentum Legal, we deliver more than just legal services—we provide the clarity, protection, and momentum you need to succeed. Whether you're closing a venture deal, navigating NIL opportunities, or building institutional compliance, our mission is to turn your complex challenges into lasting opportunities. We help you move forward with confidence.
+                  At Momentum Legal, we deliver more than just legal services—we provide the clarity, protection, and momentum you need to succeed. Whether you're closing a venture deal, navigating NIL opportunities, or building institutional compliance, our mission is to turn your complex challenges into lasting opportunities. We help you move forward with confidence and security.
                 </motion.p>
               </div>
             </motion.div>

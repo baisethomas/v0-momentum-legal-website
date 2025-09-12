@@ -125,10 +125,6 @@ export default function ContactPage() {
                 <ul className="text-sm text-gray-700 space-y-3">
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <span>Expert legal counsel from Wilson Hall</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
                     <span>Free consultation and case assessment</span>
                   </li>
                   <li className="flex items-start gap-2">
@@ -186,22 +182,7 @@ export default function ContactPage() {
                       className="w-full placeholder-gray-500 outline-none focus:ring-2 focus:ring-emerald-400/60 focus:border-emerald-300 transition text-sm text-gray-900 bg-white border-gray-200 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3"
                     />
                   </div>
-                  <div className="sm:col-span-1">
-                    <label className="block text-xs font-medium text-gray-700 mb-2">Budget</label>
-                    <select 
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleInputChange}
-                      className="w-full appearance-none outline-none focus:ring-2 focus:ring-emerald-400/60 focus:border-emerald-300 transition text-sm text-gray-900 bg-white border-gray-200 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3"
-                    >
-                      <option value="">Select budget range</option>
-                      <option value="5-25k">$5k–$25k</option>
-                      <option value="25-50k">$25k–$50k</option>
-                      <option value="50-100k">$50k–$100k</option>
-                      <option value="100k+">$100k+</option>
-                      <option value="retainer">Monthly Retainer</option>
-                    </select>
-                  </div>
+                  
                   <div className="sm:col-span-1">
                     <label className="block text-xs font-medium text-gray-700 mb-2">Timeline</label>
                     <select 
