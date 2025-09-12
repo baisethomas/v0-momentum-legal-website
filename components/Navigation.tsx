@@ -71,9 +71,9 @@ export function Navigation({ currentPage }: NavigationProps) {
             style={{ cursor: 'pointer' }}
           >
             <img 
-              src="/1x/logo.png" 
+              src="/logo-latest.png" 
               alt="Momentum Legal" 
-              className="h-10 w-auto filter invert"
+              className="h-10 w-auto"
             />
             <div className="flex flex-col leading-tight">
               <div className="flex items-center gap-2">

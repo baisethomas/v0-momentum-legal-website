@@ -424,9 +424,9 @@ export default function MomentumLegalV2() {
             <div className="lg:col-span-2">
               <div className="flex items-center gap-3 mb-6">
                 <img 
-                  src="/1x/logo.png" 
+                  src="/logo-latest.png" 
                   alt="Momentum Legal" 
-                  className="h-10 w-auto filter invert"
+                  className="h-10 w-auto"
                 />
                 <div className="flex flex-col">
                   <span className="text-xl font-poppins font-semibold tracking-tight uppercase">
