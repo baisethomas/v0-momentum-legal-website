@@ -69,14 +69,14 @@ export default function MomentumLegalV2() {
                     className="text-lg lg:text-xl font-light leading-relaxed max-w-lg text-gray-200"
                     variants={fadeUp}
                   >
-                    Corporate, NIL, and institutional counsel built for speed, precision, and clarity.
+                    Corporate, Sports, and Institutional Counsel built for innovation, ambitious clients, and dynamic markets.
                   </motion.p>
 
                   <motion.p 
                     className="text-sm lg:text-base font-light leading-relaxed max-w-lg text-gray-300"
                     variants={fadeUp}
                   >
-                    We partner with founders and investors, athletes, brands, collectives, and universities to structure deals, protect IP, and navigate evolving regulations with practical, outcome‑focused advice.
+                    We serve as trusted advisors to founders, investors, athletes, brands, collectives, and universities to structure deals, protect IP, and navigate evolving regulations with practical, outcome‑focused advice.
                   </motion.p>
                 </div>
 
@@ -129,7 +129,7 @@ export default function MomentumLegalV2() {
                 <span className="font-medium">Services</span>
               </h2>
               <p className="text-lg font-light leading-relaxed text-gray-300">
-                Practical, business‑first counsel across corporate, NIL, and institutional needs—so you can move decisively and stay compliant.
+              Practical, business‑first counsel across corporate, name, image, and likeness (NIL), and institutional needs—so you can move decisively and maximize opportunities.
               </p>
             </motion.div>
 
@@ -141,38 +141,94 @@ export default function MomentumLegalV2() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {/* Service Cards */}
-                {[
-                  {
-                    title: "Corporate & Venture Transactions",
-                    gradient: "bg-gradient-to-tr from-slate-800 to-slate-600",
-                    ring: "ring-slate-400/30",
-                    anchor: "corporate-venture"
-                  },
-                  {
-                    title: "NIL & Athlete Representation",
-                    gradient: "bg-gradient-to-tr from-slate-700 to-slate-500",
-                    ring: "ring-slate-400/30",
-                    anchor: "nil-athlete"
-                  },
-                  {
-                    title: "NIL Collective Representation",
-                    gradient: "bg-gradient-to-tr from-gray-800 to-gray-600",
-                    ring: "ring-gray-400/30",
-                    anchor: "collective"
-                  },
-                  {
-                    title: "Brand & Sponsor Advisory",
-                    gradient: "bg-gradient-to-tr from-zinc-800 to-zinc-600",
-                    ring: "ring-zinc-400/30",
-                    anchor: "brand-sponsor"
-                  }
-                ].slice(0, 4).map((service, index) => (
+              <div className="space-y-6">
+                {/* First Row - 2 cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {[
+                    {
+                      title: "Corporate & Venture Transactions",
+                      gradient: "bg-gradient-to-tr from-slate-800 to-slate-600",
+                      ring: "ring-slate-400/30",
+                      anchor: "corporate-venture"
+                    },
+                    {
+                      title: "NIL & Athlete Representation",
+                      gradient: "bg-gradient-to-tr from-slate-700 to-slate-500",
+                      ring: "ring-slate-400/30",
+                      anchor: "nil-athlete"
+                    }
+                  ].map((service, index) => (
+                    <motion.a 
+                      key={index}
+                      href={`/services#${service.anchor}`}
+                      className={`group relative overflow-hidden ring-1 ${service.ring} text-white ${service.gradient} rounded-2xl p-5 transition-all duration-300 cursor-pointer hover:shadow-xl block`}
+                      whileHover={{ y: -4, scale: 1.02 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div 
+                        className="absolute inset-0"
+                        style={{
+                          background: "radial-gradient(160px 160px at 30% 30%, rgba(255,255,255,0.25), transparent 60%), radial-gradient(220px 220px at 70% 70%, rgba(0,0,0,0.25), transparent 60%)"
+                        }}
+                      />
+                      <div className="relative flex flex-col h-full justify-between">
+                        <h3 className="text-2xl font-semibold mb-6 text-white leading-tight">{service.title}</h3>
+                        <div className="flex justify-end">
+                          <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
+                            <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                          </div>
+                        </div>
+                      </div>
+                    </motion.a>
+                  ))}
+                </div>
+
+                {/* Second Row - 2 cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {[
+                    {
+                      title: "NIL Collective Representation",
+                      gradient: "bg-gradient-to-tr from-gray-800 to-gray-600",
+                      ring: "ring-gray-400/30",
+                      anchor: "collective"
+                    },
+                    {
+                      title: "Brand & Sponsor Advisory",
+                      gradient: "bg-gradient-to-tr from-zinc-800 to-zinc-600",
+                      ring: "ring-zinc-400/30",
+                      anchor: "brand-sponsor"
+                    }
+                  ].map((service, index) => (
+                    <motion.a 
+                      key={index}
+                      href={`/services#${service.anchor}`}
+                      className={`group relative overflow-hidden ring-1 ${service.ring} text-white ${service.gradient} rounded-2xl p-5 transition-all duration-300 cursor-pointer hover:shadow-xl block`}
+                      whileHover={{ y: -4, scale: 1.02 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div 
+                        className="absolute inset-0"
+                        style={{
+                          background: "radial-gradient(160px 160px at 30% 30%, rgba(255,255,255,0.25), transparent 60%), radial-gradient(220px 220px at 70% 70%, rgba(0,0,0,0.25), transparent 60%)"
+                        }}
+                      />
+                      <div className="relative flex flex-col h-full justify-between">
+                        <h3 className="text-2xl font-semibold mb-6 text-white leading-tight">{service.title}</h3>
+                        <div className="flex justify-end">
+                          <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
+                            <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                          </div>
+                        </div>
+                      </div>
+                    </motion.a>
+                  ))}
+                </div>
+
+                {/* Third Row - Centered University card */}
+                <div className="flex justify-center">
                   <motion.a 
-                    key={index}
-                    href={`/services#${service.anchor}`}
-                    className={`group relative overflow-hidden ring-1 ${service.ring} text-white ${service.gradient} rounded-2xl p-5 transition-all duration-300 cursor-pointer hover:shadow-xl block`}
+                    href="/services#university-institutional"
+                    className="group relative overflow-hidden ring-1 ring-neutral-400/30 text-white bg-gradient-to-tr from-neutral-800 to-neutral-600 rounded-2xl p-5 transition-all duration-300 cursor-pointer hover:shadow-xl block w-full max-w-sm"
                     whileHover={{ y: -4, scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -183,30 +239,15 @@ export default function MomentumLegalV2() {
                       }}
                     />
                     <div className="relative flex flex-col h-full justify-between">
-                      <h3 className="text-2xl font-semibold mb-6 text-white leading-tight">{service.title}</h3>
-                      <div className="mt-8"></div>
+                      <h3 className="text-2xl font-semibold mb-6 text-white leading-tight">University & Institutional Counsel</h3>
+                      <div className="flex justify-end">
+                        <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
+                          <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                        </div>
+                      </div>
                     </div>
                   </motion.a>
-                ))}
-
-                {/* University & Institutional Counsel */}
-                <motion.a 
-                  href="/services#university-institutional"
-                  className="group relative overflow-hidden ring-1 ring-neutral-400/30 text-white bg-gradient-to-tr from-neutral-800 to-neutral-600 rounded-2xl p-5 transition-all duration-300 cursor-pointer hover:shadow-xl block"
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div 
-                    className="absolute inset-0"
-                    style={{
-                      background: "radial-gradient(160px 160px at 30% 30%, rgba(255,255,255,0.25), transparent 60%), radial-gradient(220px 220px at 70% 70%, rgba(0,0,0,0.25), transparent 60%)"
-                    }}
-                  />
-                  <div className="relative flex flex-col h-full justify-between">
-                    <h3 className="text-2xl font-semibold mb-6 text-white leading-tight">University & Institutional Counsel</h3>
-                    <div className="mt-8"></div>
-                  </div>
-                </motion.a>
+                </div>
               </div>
             </motion.div>
           </div>      
@@ -230,7 +271,7 @@ export default function MomentumLegalV2() {
                 <span className="font-medium">Momentum Legal</span>
               </h2>
               <p className="text-lg font-light leading-relaxed text-gray-600 mb-8">
-                We deliver modern corporate and NIL counsel to founders, athletes, brands, collectives, and institutions—clear advice, fast execution, and durable outcomes.
+              We deliver modern business counsel to founders, athletes, brands, collectives, and institutions—forward vision, steady guidance, and sustainable growth.
               </p>
               <button 
                 onClick={() => window.location.href = '/about'}
@@ -396,9 +437,13 @@ export default function MomentumLegalV2() {
                   </span>
                 </div>
               </div>
-              <p className="text-sm font-light leading-relaxed max-w-md mb-6 text-gray-400">
+              <p className="text-sm font-light leading-relaxed max-w-md mb-4 text-gray-400">
                 Corporate, NIL, and institutional counsel—delivered with clarity, speed, and precision.
               </p>
+              <div className="text-sm font-light text-gray-400 mb-6">
+                <p>28 Geary St., Suite 650 #193</p>
+                <p>San Francisco, CA 94108</p>
+              </div>
               <div className="flex gap-4">
                 <a href="https://www.linkedin.com/company/momentum-legal" target="_blank" rel="noopener noreferrer" className="w-8 h-8 border flex items-center justify-center hover:border-gray-500 transition-colors cursor-pointer border-gray-700" aria-label="LinkedIn">
                   <Linkedin className="w-4 h-4" />
