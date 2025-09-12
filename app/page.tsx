@@ -31,16 +31,17 @@ export default function MomentumLegalV2() {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/hero-image.png')"
+            backgroundImage: "url('/High Rise Image.jpg')"
           }}
         >
+          <div className="absolute inset-0 bg-black/40"></div>
         </div>
         
         <div className="max-w-screen-2xl lg:p-12 mx-auto pt-6 px-6 pb-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 min-h-screen">
             {/* Left Column - Text */}
             <motion.div 
-              className="lg:col-span-5 flex flex-col justify-center text-black"
+              className="lg:col-span-5 flex flex-col justify-center text-white"
               variants={stagger}
               initial="hidden"
               animate={isLoaded ? "show" : "hidden"}
@@ -56,23 +57,23 @@ export default function MomentumLegalV2() {
 
                 <div className="space-y-6">
                   <motion.h1 
-                    className="lg:text-7xl leading-none text-5xl font-light text-black tracking-tight"
+                    className="lg:text-7xl leading-none text-5xl font-light text-white tracking-tight"
                     variants={fadeUp}
                   >
                     Momentum<br />
                     <span className="font-medium">Legal</span><br />
-                    <span className="text-gray-600">the Power Behind Your Next Deal</span>
+                    <span className="text-gray-200">the Power Behind Your Next Deal</span>
                   </motion.h1>
 
                   <motion.p 
-                    className="text-lg lg:text-xl font-light leading-relaxed max-w-lg text-gray-700"
+                    className="text-lg lg:text-xl font-light leading-relaxed max-w-lg text-gray-200"
                     variants={fadeUp}
                   >
                     Corporate, NIL, and institutional counsel built for speed, precision, and clarity.
                   </motion.p>
 
                   <motion.p 
-                    className="text-sm lg:text-base font-light leading-relaxed max-w-lg text-gray-600"
+                    className="text-sm lg:text-base font-light leading-relaxed max-w-lg text-gray-300"
                     variants={fadeUp}
                   >
                     We partner with founders and investors, athletes, brands, collectives, and universities to structure deals, protect IP, and navigate evolving regulations with practical, outcome‑focused advice.
@@ -85,7 +86,7 @@ export default function MomentumLegalV2() {
                 >
                   <motion.button 
                     onClick={() => window.location.href = '/contact'}
-                    className="px-8 py-4 text-sm font-medium transition-colors flex items-center justify-center gap-2 bg-black hover:bg-gray-900 text-white"
+                    className="px-8 py-4 text-sm font-medium transition-colors flex items-center justify-center gap-2 bg-white text-black hover:bg-gray-100"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -94,7 +95,7 @@ export default function MomentumLegalV2() {
                   </motion.button>
                   <motion.button 
                     onClick={() => scrollToSection('services')}
-                    className="border px-8 py-4 text-sm font-medium transition-colors border-gray-300 hover:border-black text-black bg-white/80 backdrop-blur-sm hover:bg-white"
+                    className="border px-8 py-4 text-sm font-medium transition-colors border-white/50 hover:border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white/20"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -102,12 +103,7 @@ export default function MomentumLegalV2() {
                   </motion.button>
                 </motion.div>
 
-                <motion.div 
-                  className="text-sm text-gray-600"
-                  variants={fadeUp}
-                >
-                  Move quickly. Get it right the first time.
-                </motion.div>
+
               </div>
             </motion.div>
 

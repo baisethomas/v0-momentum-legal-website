@@ -55,8 +55,8 @@ export default function ServicesPage() {
     {
       title: "Corporate & Venture Transactions",
       description: "Navigate complex corporate and venture transactions with clarity and confidence. From initial formation to strategic financing, M&A, and ongoing corporate counsel, we structure, negotiate, and protect your business interests, ensuring a foundation for sustained growth.",
-      image: "https://images.unsplash.com/photo-1560472355-536de3962603?auto=format&fit=crop&w=800&q=80",
-      alt: "Corporate Law",
+      image: "/Stock Photo (Corporate).jpg",
+      alt: "Corporate financial data and market analysis",
       icon: <Building className="h-8 w-8" />,
       id: "corporate-venture",
       services: [
@@ -86,8 +86,8 @@ export default function ServicesPage() {
     {
       title: "NIL Collective Representation",
       description: "In a rapidly evolving regulatory landscape, NIL collectives demand proactive and precise legal strategy. We provide comprehensive support for governance, compliance, donor agreements, and athlete contracts, ensuring your programs remain credible, competitive, and sustainable.",
-      image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80",
-      alt: "Team Collaboration",
+      image: "/Football Field.jpg",
+      alt: "Valley Christian Warriors football field and athletic complex",
       icon: <Users className="h-8 w-8" />,
       id: "collective",
       services: [
@@ -101,8 +101,8 @@ export default function ServicesPage() {
     {
       title: "Brand & Sponsor Advisory",
       description: "Brands partnering with athletes face distinct legal and regulatory complexities. We empower sponsors and agencies to structure impactful deals, protect intellectual property, and expertly navigate NIL and advertising regulations, ensuring effective and fully compliant campaigns.",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
-      alt: "Brand Strategy",
+      image: "/Brands Image.jpg",
+      alt: "Stack of branded sportswear t-shirts (Reebok, Adidas, Nike, Champion)",
       icon: <Briefcase className="h-8 w-8" />,
       id: "brand-sponsor",
       services: [
@@ -115,8 +115,8 @@ export default function ServicesPage() {
     {
       title: "University & Institutional Counsel",
       description: "Colleges and athletic departments are navigating the unprecedented shifts of the NIL era. We provide essential policy drafting, comprehensive compliance training, and rigorous contract oversight. Our expertise protects your institution, supports your student‑athletes, and preserves the integrity of your programs.",
-      image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80",
-      alt: "University Campus",
+      image: "/University .jpg",
+      alt: "Historic university building with Gothic architecture",
       icon: <GraduationCap className="h-8 w-8" />,
       id: "university-institutional",
       services: [
@@ -138,8 +138,8 @@ export default function ServicesPage() {
         {/* Background Image with Parallax */}
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1920&q=80"
-            alt="Legal services and expertise"
+            src="/Man Signing Paper (black).png"
+            alt="Professional signing legal documents"
             fill
             priority
             className="object-cover will-change-transform"
@@ -220,13 +220,12 @@ export default function ServicesPage() {
                     transition={{ duration: 0.3 }}
                   >
                     <div className="relative">
-                      <div className="aspect-square overflow-hidden rounded-2xl bg-gray-900">
+                      <div className="aspect-square overflow-hidden rounded-2xl">
                         <img 
                           src={service.image} 
                           alt={service.alt}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
-                        <div className="absolute inset-0 group-hover:bg-black/10 transition-colors duration-300 bg-black/20"></div>
                         <div className="absolute top-6 left-6">
                           <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-black">
                             {service.icon}
