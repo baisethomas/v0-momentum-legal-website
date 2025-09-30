@@ -31,6 +31,10 @@ export const metadata: Metadata = {
   description:
     "Business, NIL, and institutional counsel built for speed, precision, and clarity. We partner with founders, athletes, brands, collectives, and universities.",
   generator: "v0.app",
+  icons: {
+    icon: "/logo-latest.png",
+    apple: "/logo-latest.png",
+  },
 }
 
 export default function RootLayout({
