@@ -27,7 +27,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Momentum Legal — The Power Behind Your Next Move",
+  title: "Momentum Legal – The Power Behind Your Next Deal",
   description:
     "Business, NIL, and institutional counsel built for speed, precision, and clarity. We partner with founders, athletes, brands, collectives, and universities.",
   generator: "v0.app",

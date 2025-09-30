@@ -133,14 +133,14 @@ export default function ContactPage() {
                   </li>
                 </ul>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-2 text-sm">
-                  <a href="mailto:intake@momentumlegal.com" className="inline-flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition">
+                  <a href="mailto:baise.thomas@gmail.com" className="inline-flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition">
                     <Mail className="w-4 h-4" strokeWidth={1.5} />
-                    intake@momentumlegal.com
+                    baise.thomas@gmail.com
                   </a>
                   <span className="text-gray-400 hidden sm:inline">•</span>
-                  <a href="tel:+1-555-555-0117" className="inline-flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition">
+                  <a href="tel:415-404-9232" className="inline-flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition">
                     <Phone className="w-4 h-4" strokeWidth={1.5} />
-                    Schedule a call
+                    415-404-9232
                   </a>
                 </div>
               </div>
@@ -303,6 +303,9 @@ export default function ContactPage() {
               <div className="text-sm font-light text-gray-400 mb-6">
                 <p>28 Geary St., Suite 650 #193</p>
                 <p>San Francisco, CA 94108</p>
+                <p className="mt-2">
+                  <a href="tel:415-404-9232" className="hover:text-gray-300 transition-colors">415-404-9232</a>
+                </p>
               </div>
               <div className="flex gap-4">
                 <a href="https://www.linkedin.com/company/momentum-legal" target="_blank" rel="noopener noreferrer" className="w-8 h-8 border flex items-center justify-center hover:border-gray-500 transition-colors cursor-pointer border-gray-700" aria-label="LinkedIn">
@@ -313,7 +316,7 @@ export default function ContactPage() {
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                   </svg>
                 </a>
-                <a href="mailto:intake@momentumlegal.com" className="w-8 h-8 border flex items-center justify-center hover:border-gray-500 transition-colors cursor-pointer border-gray-700" aria-label="Email">
+                <a href="mailto:baise.thomas@gmail.com" className="w-8 h-8 border flex items-center justify-center hover:border-gray-500 transition-colors cursor-pointer border-gray-700" aria-label="Email">
                   <Mail className="w-4 h-4" />
                 </a>
               </div>
