@@ -133,9 +133,9 @@ export default function ContactPage() {
                   </li>
                 </ul>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-2 text-sm">
-                  <a href="mailto:baise.thomas@gmail.com" className="inline-flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition">
+                  <a href="mailto:info@momentumlegalpc.com" className="inline-flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition">
                     <Mail className="w-4 h-4" strokeWidth={1.5} />
-                    baise.thomas@gmail.com
+                    info@momentumlegalpc.com
                   </a>
                   <span className="text-gray-400 hidden sm:inline">•</span>
                   <a href="tel:415-404-9232" className="inline-flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition">
@@ -316,7 +316,7 @@ export default function ContactPage() {
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                   </svg>
                 </a>
-                <a href="mailto:baise.thomas@gmail.com" className="w-8 h-8 border flex items-center justify-center hover:border-gray-500 transition-colors cursor-pointer border-gray-700" aria-label="Email">
+                <a href="mailto:info@momentumlegalpc.com" className="w-8 h-8 border flex items-center justify-center hover:border-gray-500 transition-colors cursor-pointer border-gray-700" aria-label="Email">
                   <Mail className="w-4 h-4" />
                 </a>
               </div>
